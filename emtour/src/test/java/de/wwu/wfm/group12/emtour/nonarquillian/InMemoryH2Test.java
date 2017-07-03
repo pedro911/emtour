@@ -1,4 +1,4 @@
-package de.wwu.wfm.group12.emtour2.nonarquillian;
+package de.wwu.wfm.group12.emtour.nonarquillian;
 
 import org.apache.ibatis.logging.LogFactory;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
@@ -22,7 +22,7 @@ public class InMemoryH2Test {
   @Rule
   public static ProcessEngineRule rule = TestCoverageProcessEngineRuleBuilder.create().build();
 
-  private static final String PROCESS_DEFINITION_KEY = "emtour2";
+  private static final String PROCESS_DEFINITION_KEY = "emtour";
 
   static {
     LogFactory.useSlf4jLogging(); // MyBatis

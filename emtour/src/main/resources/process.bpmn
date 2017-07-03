@@ -60,7 +60,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_16rwyru" sourceRef="Task_1qwik3k" targetRef="Task_0usuw02" />
     <bpmn:sequenceFlow id="SequenceFlow_1iwmhn2" sourceRef="IntermediateCatchEvent_0wuhvca" targetRef="ExclusiveGateway_022vlj9" />
     <bpmn:sequenceFlow id="SequenceFlow_016uvto" sourceRef="Task_1l1cm29" targetRef="ExclusiveGateway_012kmzp" />
-    <bpmn:sendTask id="Task_17clh91" name="Send recommendations and customer information" camunda:class="de.wwu.wfm.group12.emtour2.SendRecommendation">
+    <bpmn:sendTask id="Task_17clh91" name="Send recommendations and customer information" camunda:class="de.wwu.wfm.group12.emtour.SendRecommendation">
       <bpmn:incoming>SequenceFlow_1wgav6e</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0bwajq4</bpmn:outgoing>
     </bpmn:sendTask>
@@ -87,7 +87,7 @@
       <bpmn:incoming>SequenceFlow_0pbe2z1</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0r2xk0v</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Task_0n71rqw" name="Send additional Customer information " camunda:class="de.wwu.wfm.group12.emtour2.SendCustomerInfo">
+    <bpmn:sendTask id="Task_0n71rqw" name="Send additional Customer information " camunda:class="de.wwu.wfm.group12.emtour.SendCustomerInfo">
       <bpmn:incoming>SequenceFlow_0r2xk0v</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_05itrjt</bpmn:outgoing>
     </bpmn:sendTask>
@@ -120,7 +120,7 @@
       <bpmn:messageEventDefinition messageRef="Message_1fr17km" />
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1hmd6or" sourceRef="ExclusiveGateway_022vlj9" targetRef="Task_1l1cm29" />
-    <bpmn:sendTask id="Task_07zb2we" name="Ask for more information" camunda:class="de.wwu.wfm.group12.emtour2.AskInformation">
+    <bpmn:sendTask id="Task_07zb2we" name="Ask for more information" camunda:class="de.wwu.wfm.group12.emtour.AskInformation">
       <bpmn:incoming>SequenceFlow_1nfur15</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0pbe2z1</bpmn:outgoing>
     </bpmn:sendTask>
@@ -129,13 +129,13 @@
       <bpmn:outgoing>SequenceFlow_05bk1g8</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1nfur15</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Task_0usuw02" name="Send proposals" camunda:class="de.wwu.wfm.group12.emtour2.SendProposals">
+    <bpmn:sendTask id="Task_0usuw02" name="Send proposals" camunda:class="de.wwu.wfm.group12.emtour.SendProposals">
       <bpmn:incoming>SequenceFlow_16rwyru</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0bd8u38</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="SequenceFlow_1wgav6e" sourceRef="Task_02nax2y" targetRef="Task_17clh91" />
     <bpmn:sequenceFlow id="SequenceFlow_1ww1185" sourceRef="StartEvent_1" targetRef="Task_02nax2y" />
-    <bpmn:businessRuleTask id="Task_02nax2y" name="Generate &#10;recommendations" camunda:class="de.wwu.wfm.group12.emtour2.BusinessRuleDelegate">
+    <bpmn:businessRuleTask id="Task_02nax2y" name="Generate &#10;recommendations" camunda:class="de.wwu.wfm.group12.emtour.BusinessRuleDelegate">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="customer_name">customer_name</camunda:inputParameter>
@@ -161,7 +161,7 @@
       <bpmn:incoming>SequenceFlow_0bhhag2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1epr314</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="ProcessBill" name="Process Bill" camunda:class="de.wwu.wfm.group12.emtour2.ProcessBill">
+    <bpmn:serviceTask id="ProcessBill" name="Process Bill" camunda:class="de.wwu.wfm.group12.emtour.ProcessBill">
       <bpmn:extensionElements>
         <camunda:properties>
           <camunda:property />
@@ -170,7 +170,7 @@
       <bpmn:incoming>SequenceFlow_1epr314</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_06zjphf</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sendTask id="Task_0e85iia" name="Send Bill to the Customer" camunda:class="de.wwu.wfm.group12.emtour2.SendBill">
+    <bpmn:sendTask id="Task_0e85iia" name="Send Bill to the Customer" camunda:class="de.wwu.wfm.group12.emtour.SendBill">
       <bpmn:incoming>SequenceFlow_06zjphf</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1mp1nkg</bpmn:outgoing>
     </bpmn:sendTask>
@@ -207,7 +207,7 @@
     <bpmn:endEvent id="EndEvent_18j4kho">
       <bpmn:incoming>SequenceFlow_08s3hn6</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sendTask id="Task_0js36rr" name="Send voucher(s) to the customer" camunda:class="de.wwu.wfm.group12.emtour2.SendVoucher">
+    <bpmn:sendTask id="Task_0js36rr" name="Send voucher(s) to the customer" camunda:class="de.wwu.wfm.group12.emtour.SendVoucher">
       <bpmn:incoming>SequenceFlow_18oyt1p</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08s3hn6</bpmn:outgoing>
     </bpmn:sendTask>
@@ -221,7 +221,7 @@
       <bpmn:incoming>SequenceFlow_1yxyufo</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0juehj6</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Task_148vatr" name="Send payment and customers&#39; activities" camunda:class="de.wwu.wfm.group12.emtour2.SendPayment">
+    <bpmn:sendTask id="Task_148vatr" name="Send payment and customers&#39; activities" camunda:class="de.wwu.wfm.group12.emtour.SendPayment">
       <bpmn:incoming>SequenceFlow_02zm952</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_15vou9e</bpmn:outgoing>
     </bpmn:sendTask>

@@ -1,4 +1,4 @@
-package de.wwu.wfm.group12.emtour2;
+package de.wwu.wfm.group12.emtour;
 
 import java.util.logging.Logger;
 
@@ -8,13 +8,12 @@ import javax.inject.Named;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-public class SendVoucher implements JavaDelegate {
+public class SendCustomerInfo implements JavaDelegate{
 	 private final static Logger LOGGER = Logger.getLogger("RECOMMENDATIONS-REQUESTS");
 
 	  public void execute(DelegateExecution execution) throws Exception {
-	    LOGGER.info("Send Voucher '" 
+	    LOGGER.info("Send Customer Information '" 
 	    		+ execution.getVariable("name") + "' age: '"
-	    		+ execution.getVariable("age")  
-	    		+ "END ...");
+	    		+ execution.getVariable("age") + "'...");
 	  }
 }

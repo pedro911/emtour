@@ -1,4 +1,4 @@
-package de.wwu.wfm.group12.emtour2;
+package de.wwu.wfm.group12.emtour;
 
 import java.util.logging.Logger;
 import org.camunda.bpm.engine.delegate.DelegateExecution;

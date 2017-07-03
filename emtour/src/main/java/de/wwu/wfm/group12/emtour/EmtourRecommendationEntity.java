@@ -1,31 +1,35 @@
-package de.wwu.wfm.group12.emtour2;
-
-import java.io.Serializable;
+package de.wwu.wfm.group12.emtour;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
+import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
-public class FunsparkRecommendationEntity implements Serializable {
+public class EmtourRecommendationEntity implements Serializable {
 
 	private static  final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
-	protected int idfunspark_recommendation;
+	protected int idemtour_recommendation;
 	
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	protected EmtourRecommendationEntity emtourRecommendation;
+	@OneToOne(cascade=CascadeType.ALL)
+	protected CustomerEntity customer;
 	
 	@Version
 	protected long version;
 	
 	protected Double price;
 	protected String description;
+	protected Enum<?> recomendedDestination; 
+	
+	protected boolean paymentStatus;
 
 	public long getVersion() {
 		return version;
@@ -34,5 +38,6 @@ public class FunsparkRecommendationEntity implements Serializable {
 	public void setVersion(long version) {
 		this.version = version;
 	}	
+	
 
 }

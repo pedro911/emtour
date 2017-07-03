@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>de.wwu.wfm.group12</groupId>
-  <artifactId>emtour2</artifactId>
+  <artifactId>emtour</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
   <packaging>war</packaging>

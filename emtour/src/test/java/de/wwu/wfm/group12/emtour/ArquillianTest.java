@@ -1,4 +1,4 @@
-package de.wwu.wfm.group12.emtour2;
+package de.wwu.wfm.group12.emtour;
 
 import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.*;
 import static org.junit.Assert.*;
@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class ArquillianTest {
   
-  private static final String PROCESS_DEFINITION_KEY = "emtour2";
+  private static final String PROCESS_DEFINITION_KEY = "emtour";
 
   @Deployment
   public static WebArchive createDeployment() {
@@ -34,7 +34,7 @@ public class ArquillianTest {
       .importRuntimeAndTestDependencies().resolve().withTransitivity().asFile();
 
     return ShrinkWrap
-            .create(WebArchive.class, "emtour2.war")
+            .create(WebArchive.class, "emtour.war")
             // add needed dependencies
             .addAsLibraries(libs)
             // prepare as process application archive for Camunda BPM Platform
@@ -44,7 +44,7 @@ public class ArquillianTest {
             // boot JPA persistence unit
             .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
             // add your own classes (could be done one by one as well)
-            .addPackages(false, "de.wwu.wfm.group12.emtour2") // not recursive to skip package 'nonarquillian'
+            .addPackages(false, "de.wwu.wfm.group12.emtour") // not recursive to skip package 'nonarquillian'
             // add process definition
             .addAsResource("process.bpmn")
             // now you can add additional stuff required for your test case
