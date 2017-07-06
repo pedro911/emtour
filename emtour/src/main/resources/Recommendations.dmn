@@ -18,71 +18,381 @@
       <rule id="row-583276450-1">
         <inputEntry id="UnaryTests_0ry1hnv">        <text><![CDATA["Hungary"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_0t06iif">        <text><![CDATA[< 2000]]></text>
+        <inputEntry id="UnaryTests_0t06iif">        <text><![CDATA[<= 2000]]></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1sqog25">        <text>0</text>
 </inputEntry>
-        <outputEntry id="LiteralExpression_1ck3jnn">        <text><![CDATA["Budapest|flight 1, Hotel 2|1000"]]></text>
+        <outputEntry id="LiteralExpression_1ck3jnn">        <text><![CDATA["Budapest|Lufthansa Flight 2030, Hotel Star Inn Budapest Centrum|1900"]]></text>
 </outputEntry>
       </rule>
       <rule id="row-583276450-2">
         <inputEntry id="UnaryTests_03mfhg5">        <text><![CDATA["Hungary"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_0ju6gjq">        <text><![CDATA[< 2000]]></text>
+        <inputEntry id="UnaryTests_0ju6gjq">        <text><![CDATA[>2000]]></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1supc6p">        <text><![CDATA[> 0]]></text>
 </inputEntry>
-        <outputEntry id="LiteralExpression_0ei4mti">        <text><![CDATA["Balaton Lake|flight 2"]]></text>
+        <outputEntry id="LiteralExpression_0ei4mti">        <text><![CDATA["Eger|Germanwings Flight 4100, Hotel Korona|3200 "]]></text>
 </outputEntry>
       </rule>
       <rule id="row-583276450-3">
         <inputEntry id="UnaryTests_0rbk8v5">        <text><![CDATA["Italy"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_021yv6a">        <text><![CDATA[< 2000]]></text>
+        <inputEntry id="UnaryTests_021yv6a">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_007sluo">        <text>0</text>
 </inputEntry>
-        <outputEntry id="LiteralExpression_048oasx">        <text><![CDATA["Rome|flight 3"]]></text>
+        <outputEntry id="LiteralExpression_048oasx">        <text><![CDATA["Rome|Eurowings Flight 3122, Hotel Barocco|4000 "]]></text>
 </outputEntry>
       </rule>
       <rule id="row-583276450-4">
         <inputEntry id="UnaryTests_19o4gpk">        <text><![CDATA["Italy"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_17hhgmx">        <text><![CDATA[< 2000]]></text>
+        <inputEntry id="UnaryTests_17hhgmx">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_004xbkv">        <text><![CDATA[> 0]]></text>
 </inputEntry>
-        <outputEntry id="LiteralExpression_198og7g">        <text><![CDATA["Milan|flight 4"]]></text>
+        <outputEntry id="LiteralExpression_198og7g">        <text><![CDATA["Milan|Airberlin Flight 8734, Hotel Spadari al Duomo|3200"]]></text>
 </outputEntry>
       </rule>
       <rule id="row-611871199-3">
         <inputEntry id="UnaryTests_18qrpx5">        <text><![CDATA["Turkey"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1no675d">        <text><![CDATA[< 2000]]></text>
+        <inputEntry id="UnaryTests_1no675d">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1dx39lf">        <text>[0..2]</text>
 </inputEntry>
-        <outputEntry id="LiteralExpression_1vhk8s6">        <text><![CDATA["Istanbul|flight 5"]]></text>
+        <outputEntry id="LiteralExpression_1vhk8s6">        <text><![CDATA["Istanbul|Turkish Airlines Flight 080,  Hotel Inter Continental|2500"]]></text>
 </outputEntry>
       </rule>
       <rule id="row-583276450-5">
-        <inputEntry id="UnaryTests_01b620c">        <text></text>
+        <inputEntry id="UnaryTests_01b620c">        <text><![CDATA["Turkey"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_085dcpp">        <text><![CDATA[< 2000]]></text>
+        <inputEntry id="UnaryTests_085dcpp">        <text></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_10bq3hp">        <text>0</text>
+        <inputEntry id="UnaryTests_10bq3hp">        <text><![CDATA[> 2]]></text>
 </inputEntry>
-        <outputEntry id="LiteralExpression_02trtn5">        <text><![CDATA["Turin|flight 6"]]></text>
+        <outputEntry id="LiteralExpression_02trtn5">        <text><![CDATA["Antalya|Pegasus Airlines Flight 180,  Hotel The Marmara Antalya|3500"]]></text>
 </outputEntry>
       </rule>
       <rule id="row-697104656-1">
-        <inputEntry id="UnaryTests_14ny8k5">        <text></text>
+        <inputEntry id="UnaryTests_14ny8k5">        <text><![CDATA["Georgia"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_0z2dmur">        <text><![CDATA[< 2000]]></text>
+        <inputEntry id="UnaryTests_0z2dmur">        <text><![CDATA[<= 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1het9m9">        <text><![CDATA[> 0]]></text>
+        <inputEntry id="UnaryTests_1het9m9">        <text>0</text>
 </inputEntry>
-        <outputEntry id="LiteralExpression_1cuj6hg">        <text><![CDATA["Venice|flight 7"]]></text>
+        <outputEntry id="LiteralExpression_1cuj6hg">        <text><![CDATA["Gori|Pegasus Airlines Flight 170,  Hotel Guest House Nitza|1500"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-1">
+        <inputEntry id="UnaryTests_085p9vw">        <text><![CDATA["Georgia"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_07n88gi">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_16k8p1c">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0g6h5u9">        <text><![CDATA["Tbilisi|Turkish Airlines Flight 171, Hotel Holiday Inn|2400"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-2">
+        <inputEntry id="UnaryTests_0lygpm1">        <text><![CDATA["Czech Republic"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_04j3ll8">        <text><![CDATA[<= 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_019cjkz">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1tmimu0">        <text><![CDATA["Prague|Germanwings Flight 5509, Hotel Maximilian|1900"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-3">
+        <inputEntry id="UnaryTests_1ks332r">        <text><![CDATA["Czech Republic"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0utr778">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1q79a0a">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_18i905f">        <text><![CDATA["Brno|Lufthansa Flight 109, Hotel Barcelo Brno Palace|2600"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-4">
+        <inputEntry id="UnaryTests_0anlumj">        <text><![CDATA["India"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1q46zqt">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_152ajbp">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_19tgork">        <text><![CDATA["Dehli|Lufthansa Flight 1199, Hotel Taj Palace|2900"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-5">
+        <inputEntry id="UnaryTests_1j1kvdt">        <text><![CDATA["India"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_13pzdi4">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0zryd04">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1xcinuw">        <text><![CDATA["Jaipur|Etihad Airways Flight 2900, Hotel Jas Vilas|3200"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-6">
+        <inputEntry id="UnaryTests_1d7ch1k">        <text><![CDATA["Cambodia"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0r2qcl1">        <text><![CDATA[<= 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1fzc1ud">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0mqalra">        <text><![CDATA["Phnom Penh|Austrian Airways Flight 3400, Hotel Anise Villa|1900"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-7">
+        <inputEntry id="UnaryTests_0ml2o75">        <text><![CDATA["Cambodia"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1wvv3sb">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_00p4ear">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1w2k3i7">        <text><![CDATA["Siem Reap|Lufthansa Flight 3856, Park Hyatt Siem Reap|2880"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-8">
+        <inputEntry id="UnaryTests_028akx4">        <text><![CDATA["Bolivia"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1w94kse">        <text><![CDATA[<= 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1vobtgo">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_14yq9ov">        <text><![CDATA["La Paz|LATAM Airlines Flight 4210, Hostel Maya|1900 "]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-9">
+        <inputEntry id="UnaryTests_0z58ohg">        <text><![CDATA["Bolivia"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0hn4m9y">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1k7pfgz">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0lswtjw">        <text><![CDATA["Santa Cruz|LATAM Airlines Flight 2300, Hotel Radisson Santa Cruz|4300"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-10">
+        <inputEntry id="UnaryTests_0fz0maz">        <text><![CDATA["Honduras"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_19qm67g">        <text><![CDATA[<= 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_062sc2z">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_10uaxu3">        <text><![CDATA["Tegucigalpa|Air Canada Flight 9603, Hostel Villa Marina|1850"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-11">
+        <inputEntry id="UnaryTests_0qxo8ig">        <text><![CDATA["Honduras"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1p6phys">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_066wso0">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0qb8gyy">        <text><![CDATA["La Ceiba|American Airlines Flight 2488, Hotel Carnaval|3200 "]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-12">
+        <inputEntry id="UnaryTests_1x1gzk6">        <text><![CDATA["Maldives"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1ifsp9u">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1lsfy08">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0b06630">        <text><![CDATA["Male|Airberlin Flight 2398, Hotel Jen Male|4200"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-13">
+        <inputEntry id="UnaryTests_02muvi4">        <text><![CDATA["Maldives"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1bzgkrx">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1wvxbk2">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_15p3y9c">        <text><![CDATA["Addu Atoll|Airberlin Flight 2399, Hotel Canareef Resort Maldives|5600"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-14">
+        <inputEntry id="UnaryTests_0uflmvo">        <text><![CDATA["France"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_01g231k">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0ksbhnn">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0bwjbcn">        <text><![CDATA["Paris|Eurowings Flight 5321, Hotel Pullman Paris Tour Eiffel|4200"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-15">
+        <inputEntry id="UnaryTests_118eytt">        <text><![CDATA["France"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0139xh8">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0otkk7z">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0yz512a">        <text><![CDATA["Nice|Germanwings Flight 4398, Hotel Novotel Nice Centre Vieux Nice|3900"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-16">
+        <inputEntry id="UnaryTests_0iaqufb">        <text><![CDATA["USA"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_100ztb3">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0sh6uwm">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0y2h2xa">        <text><![CDATA["New York|Lufthansa Flight 5321, Hotel New York Marriott Marquis|5100"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-17">
+        <inputEntry id="UnaryTests_0ibr60a">        <text><![CDATA["USA"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1xi952r">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1a8i4v3">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_04rn50c">        <text><![CDATA["Miami|American Airlines Flight 7644, Hotel Crown Plaza|4200"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-18">
+        <inputEntry id="UnaryTests_1uzyrty">        <text><![CDATA["Bali"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_16ay18z">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1o1hbah">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_084f9nq">        <text><![CDATA["Bali|Singapore Airlines Flight 2120, Hotel Le Meridien Bali Jimbaran|3900"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-19">
+        <inputEntry id="UnaryTests_1129868">        <text><![CDATA["Bali"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0xefy04">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0fqye1n">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1s7nomt">        <text><![CDATA["Bali|Singapore Airlines Flight 2120, Hotel Semawang Beach|2900"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-20">
+        <inputEntry id="UnaryTests_0276m4z">        <text><![CDATA["Dubai"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0k01mte">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0oeky1s">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0svu8tb">        <text><![CDATA["Dubai|Turkish Arilines Flight 9822, Hotel Al Raien|2700 "]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-21">
+        <inputEntry id="UnaryTests_02nwonl">        <text><![CDATA["Dubai"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1yuxig7">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_03a7644">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1mf2ggd">        <text><![CDATA["Dubai|Turkish Airlines Flight 9822, Hotel Tulip|2400"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-22">
+        <inputEntry id="UnaryTests_04fajsk">        <text><![CDATA["Norway"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1w31btl">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_06utxu5">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_141mzj0">        <text><![CDATA["Oslo|Eurowings Flight 2876, Hotel Scandic Helsfyr |4300"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-23">
+        <inputEntry id="UnaryTests_059puvu">        <text><![CDATA["Norway"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1fj9fdx">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1bvesao">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_179ew6r">        <text><![CDATA["Sandefjord|KLM Flight 3211, Hotel Scandic Park Sandefjord|4800"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-24">
+        <inputEntry id="UnaryTests_0pvr9f9">        <text><![CDATA["Australia"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1pjdcgo">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1ymyw9k">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_019ew52">        <text><![CDATA["Canberra|Emirates Flight 3217, Hotel Avenue|4900"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-25">
+        <inputEntry id="UnaryTests_1c3f0s2">        <text><![CDATA["Australia"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_10tstzm">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1dye23e">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0mggnk6">        <text><![CDATA["Melbourne|Emirates Flight 4298, Hotel Windsor|5900"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-26">
+        <inputEntry id="UnaryTests_0kt9fwo">        <text><![CDATA["Shanghai"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0qsgg7m">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0i2oguu">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1yt4ftv">        <text><![CDATA["Shanghai| Air France Flight 3000, Hotel Hilton Shanghai Hongqiao|6100"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-27">
+        <inputEntry id="UnaryTests_163ualj">        <text><![CDATA["Shanghai"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0fkka5v">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0j39a51">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0dz00ko">        <text><![CDATA["Shanghai|Air France Flight 3000, Hotel Astor House|7300"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-28">
+        <inputEntry id="UnaryTests_0v7dtl8">        <text><![CDATA["Israel"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1jchopz">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_06pay5e">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1gtppjw">        <text><![CDATA["Nazareth|Lufthansa Flight 7540, Hotel Legacy|4500"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-29">
+        <inputEntry id="UnaryTests_04o1795">        <text><![CDATA["Israel"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_10univt">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1xa97ix">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0ivcr2v">        <text><![CDATA["Tel Aviv|Lufthansa Flight 2392, Hotel Abratel Suites|5100"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-30">
+        <inputEntry id="UnaryTests_0d16qd7">        <text><![CDATA["UK"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_155nr6j">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1945sxy">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_11vrwsu">        <text><![CDATA["London| Lufthansa Flight 2987, Hotel Marriot|4400"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-493264015-31">
+        <inputEntry id="UnaryTests_0sjxpf8">        <text><![CDATA["UK"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1ladiy6">        <text><![CDATA[> 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_02y6r78">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1ma8zem">        <text><![CDATA["Manchester|Luthansa Flight 5439, Hotel Britannia Hotel City Centre|3900"]]></text>
 </outputEntry>
       </rule>
     </decisionTable>

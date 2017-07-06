@@ -23,6 +23,12 @@ public class SendRecommendation implements JavaDelegate {
 	    
 	    //ajimenez
 	    
+	  //input variables
+	    String country = (execution.getVariable("country")).toString();
+	    String budget = (execution.getVariable("budget")).toString();
+	    String children = (execution.getVariable("children")).toString();
+	    System.out.println("Our recommendation is (input): |" + country + "|" + budget + "|" + children + "|");
+
 	    //get variable of recommendations from DMN
 	    String desiredCity = (execution.getVariable("desiredCity")).toString();
 	    System.out.println("Our recommendation is (variables): " + desiredCity);
