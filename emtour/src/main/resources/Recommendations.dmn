@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="definitions_0ji8e35" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="recommendation" name="Recommendation">
+    <decisionTable id="decisionTable" hitPolicy="FIRST">
+      <input id="input1" label="Country" camunda:inputVariable="">
+        <inputExpression id="inputExpression1" typeRef="string">        <text>country</text>
+</inputExpression>
+      </input>
+      <input id="InputClause_05oc4s8" label="Budget" camunda:inputVariable="">
+        <inputExpression id="LiteralExpression_0a74y3c" typeRef="integer">        <text>budget</text>
+</inputExpression>
+      </input>
+      <input id="InputClause_01ckjxj" label="Children" camunda:inputVariable="">
+        <inputExpression id="LiteralExpression_1iisvoj" typeRef="integer">        <text>children</text>
+</inputExpression>
+      </input>
+      <output id="output1" label="Desired City" name="desiredCity" typeRef="string" />
+      <rule id="row-583276450-1">
+        <inputEntry id="UnaryTests_0ry1hnv">        <text><![CDATA["Hungary"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0t06iif">        <text><![CDATA[< 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1sqog25">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1ck3jnn">        <text><![CDATA["Budapest|flight 1, Hotel 2|1000"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-583276450-2">
+        <inputEntry id="UnaryTests_03mfhg5">        <text><![CDATA["Hungary"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0ju6gjq">        <text><![CDATA[< 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1supc6p">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0ei4mti">        <text><![CDATA["Balaton Lake|flight 2"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-583276450-3">
+        <inputEntry id="UnaryTests_0rbk8v5">        <text><![CDATA["Italy"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_021yv6a">        <text><![CDATA[< 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_007sluo">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_048oasx">        <text><![CDATA["Rome|flight 3"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-583276450-4">
+        <inputEntry id="UnaryTests_19o4gpk">        <text><![CDATA["Italy"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_17hhgmx">        <text><![CDATA[< 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_004xbkv">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_198og7g">        <text><![CDATA["Milan|flight 4"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-611871199-3">
+        <inputEntry id="UnaryTests_18qrpx5">        <text><![CDATA["Turkey"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1no675d">        <text><![CDATA[< 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1dx39lf">        <text>[0..2]</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1vhk8s6">        <text><![CDATA["Istanbul|flight 5"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-583276450-5">
+        <inputEntry id="UnaryTests_01b620c">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_085dcpp">        <text><![CDATA[< 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_10bq3hp">        <text>0</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_02trtn5">        <text><![CDATA["Turin|flight 6"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-697104656-1">
+        <inputEntry id="UnaryTests_14ny8k5">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0z2dmur">        <text><![CDATA[< 2000]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1het9m9">        <text><![CDATA[> 0]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1cuj6hg">        <text><![CDATA["Venice|flight 7"]]></text>
+</outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
