@@ -1,0 +1,162 @@
+<html>
+<head>
+	<title>emTour Travel Agency</title>	
+</head>
+<body bgcolor="white">
+	<table style="width:100%; height:100%; background-color:#ffffff" cellspacing="0" cellpadding="20">
+		<tr height="100">
+			<td colspan="2" bgcolor="AliceBlue" align="center">
+				<h2 align="left">emTour Travel Agency
+				<img align="right" src="emTourLogo.png" height="50" width="150"/></h2>
+			</td>
+		</tr>
+		<tr>					
+			<td valign="top">
+				<h3 align="left">Please fill the form below..</h3>
+				<hr width="500" size="3" align="left" color="grey" />
+				
+				<form action="">
+					<!--<div class="form-control">-->
+						First name:<br><input type="text" class="form-control" style="width:170px;"
+											cam-variable-type="String"
+											cam-variable-name="name"
+											name="name" />
+						<br><br>
+						Last name:<br><input type="text" class="form-control" style="width:170px;"
+											cam-variable-type="String"
+											cam-variable-name="lastName"
+											name="lastName" />
+						<br><br>
+						Birth Date:<br><input class="form-control" style="width:170px;"
+											cam-variable-type="Date"
+											cam-variable-name="birtDate"
+											name="birtDate" 
+											datepicker-popup="yyyy-MM-dd'T'HH:mm:ss"
+      										is-open="dateFieldOpened"/>
+										<p class="input-group">
+										<span class="input-group-btn">
+											<button type="button"
+													class="btn btn-default"
+													ng-click="open($event)">
+											  <i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+										</p>
+										<script cam-script type="text/form-script">
+											$scope.open = function($event) {
+												$event.preventDefault();
+												$event.stopPropagation();
+												$scope.dateFieldOpened = true;
+											};
+										</script>
+						
+						Email:<br><input type="email" class="form-control" style="width:170px;"
+											cam-variable-type="String"
+											cam-variable-name="email"
+											name="email" />
+						<br><br>
+						<b>Number of travellers:</b><br>
+						Adults: <br><input type="number" class="form-control" value="1" min="1" style="width:80px;"
+											cam-variable-type="Integer"
+											cam-variable-name="adult"
+											name="adult" />
+						<br><br>
+						Children:<br><input type="number" class="form-control" value="0" min="0" style="width:80px;"
+											cam-variable-type="Integer"
+											cam-variable-name="children"
+											name="children" />
+						<br><br>
+						<b>Preferred dates:</b><br>
+						From:<br> <input  class="form-control" style="width:170px;"
+											cam-variable-type="Date"
+											cam-variable-name="travelStartDate"
+											name="travelStartDate" 
+											datepicker-popup="yyyy-MM-dd'T'HH:mm:ss"
+      										is-open="dateFieldOpened"/>
+											<p class="input-group">
+										<span class="input-group-btn">
+											<button type="button"
+													class="btn btn-default"
+													ng-click="open($event)">
+											  <i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+										</p>
+										<script cam-script type="text/form-script">
+											$scope.open = function($event) {
+												$event.preventDefault();
+												$event.stopPropagation();
+												$scope.dateFieldOpened = true;
+											};
+										</script>
+						
+						To:<br> <input class="form-control" style="width:170px;"
+											cam-variable-type="Date"
+											cam-variable-name="travelEndDate"
+											name="travelEndDate" 
+											datepicker-popup="yyyy-MM-dd'T'HH:mm:ss"
+      										is-open="dateFieldOpened"/>
+											<p class="input-group">
+										<span class="input-group-btn">
+											<button type="button"
+													class="btn btn-default"
+													ng-click="open($event)">
+											  <i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+										</p>
+										<script cam-script type="text/form-script">
+											$scope.open = function($event) {
+												$event.preventDefault();
+												$event.stopPropagation();
+												$scope.dateFieldOpened = true;
+											};
+										</script>
+						
+						Budget:<br><input type="number" class="form-control" value="0" ,min ="0" style="width:170px;"
+											cam-variable-type="Double"
+											cam-variable-name="budget"
+											name="budget" />					
+						<br><br>
+						Destination:<br>
+						<select  style="width:170px;" class="form-control"
+											cam-variable-type="String"
+											cam-variable-name="desiredCountry"
+											cam-choices="Possible_desiredCountry"
+											name="desiredCountry" >
+							<option value="1">Hungary</option>
+							<option value="2">Italy</option>
+							<option value="3">Turkey</option>
+							<option value="4">Georgia</option>
+							<option value="5">Checz Rep.</option>
+							<option value="6">India</option>
+							<option value="7">Cambodia</option>
+							<option value="8">Bolivia</option>
+							<option value="9">Honduras</option>
+							<option value="10">Vietnam</option>
+							<option value="11">Maldives</option>
+							<option value="12">France</option>
+							<option value="13">Bali</option>
+							<option value="14">USA</option>
+							<option value="15">Dubai</option>
+							<option value="16">Norway</option>
+							<option value="17">Australia</option>
+							<option value="18">UK</option>
+							<option value="19">Shanghai</option>
+							<option value="20">Israel</option>
+						</select><br>
+						<br><br>
+						<input type="submit" value="Submit">
+					<!--</div>-->
+				</form>				
+			</td>
+		</tr>
+				
+		<tr height="40">
+			<td bgcolor="white" colspan="2" align="center">
+				<font size="-1" color="black" face="Arial">Copyright &copy; 2017 - All Rights Reserved</font>
+			</td>
+		</tr>
+	</table>	
+</body>
+</html>
