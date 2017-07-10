@@ -8,10 +8,12 @@ public class BusinessRuleDelegate implements JavaDelegate{
 
   private final static Logger LOGGER = Logger.getLogger("RECOMMENDATIONS-REQUESTS");
 
-  public void execute(DelegateExecution execution) throws Exception {
+  @SuppressWarnings("null")
+public void execute(DelegateExecution execution) throws Exception {
     LOGGER.info("Generate recommendations '" 
     		+ execution.getVariable("name") + "' age: '"
-    		+ execution.getVariable("age") + "'...");
+    		+ execution.getVariable("age") + "'...");    
+    
   }
 
 } 

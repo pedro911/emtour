@@ -6,7 +6,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.sql.Connection;
 import java.sql.Date;
 
@@ -14,6 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Named;
 
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -23,26 +26,28 @@ import static java.lang.Math.toIntExact;
 @Named
 public class CustomerDatabase {
 
-  public void createDbRecord (DelegateExecution delegateExecution) throws Exception {
+	public void createCustomerDbRecord (DelegateExecution delegateExecution) throws Exception {
     
     // Get all process variables
     Map<String, Object> variables = delegateExecution.getVariables();
-        
-    String query = String.format("INSERT INTO customer (`name`,`birthDate`,`budget`,`desideredCity`,`travelStartDate`,"
-    		+ "`travelEndDate`,`email`,`children`,`adult`)"
-    		+ "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');", 
-    		variables.get("name"),				variables.get("birthDate"), 	variables.get("budget"), 	variables.get("desideredCity"),
-    		variables.get("travelStartDate"), 	variables.get("travelEndDate"), variables.get("email"), 	variables.get("children"), 
-    		variables.get("adult")); 
-     	
+    System.out.println("variables here db creation:" + variables.toString());  
+       
+    String query = String.format("INSERT INTO customer "
+    		+ "(`name`, `lastName`, `birthDate`,`email`,`budget`,"
+    		+ "`desiredCity`,`travelStartDate`,`travelEndDate`,`children`,`adult`)"
+    		+ "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');", 
+    		variables.get("name"),variables.get("lastName"),transformDate(variables.get("birthDate").toString()),variables.get("email"),variables.get("budget"),
+    		variables.get("desiredCity"),transformDate(variables.get("travelStartDate").toString()),transformDate(variables.get("travelEndDate").toString()),variables.get("children"),variables.get("adult"));
+    
     Class.forName("com.mysql.jdbc.Driver");
     
-	Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","root","mysql,germany");
+	Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
 	
 	PreparedStatement statement = con.prepareStatement(query);
 	
 	try { 
-		statement.executeUpdate(); 
+		statement.executeUpdate();
+		System.out.println("Customer database insert success");
 	} 
 	catch (SQLException e) { 
 		e.printStackTrace();
@@ -66,7 +71,7 @@ public class CustomerDatabase {
 	     	
 	    Class.forName("com.mysql.jdbc.Driver");
 	    
-		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","root","mysql,germany");
+		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
 		
 		PreparedStatement statement = con.prepareStatement(query);
 		
@@ -107,7 +112,7 @@ public class CustomerDatabase {
 		
 		Class.forName("com.mysql.jdbc.Driver");
 	    
-		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","root","mysql,germany");
+		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
 		
 		PreparedStatement statement = null;
 				
@@ -140,7 +145,7 @@ public class CustomerDatabase {
 	     	
 	    Class.forName("com.mysql.jdbc.Driver");
 	    
-		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","root","mysql,germany");
+		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
 		
 		PreparedStatement statement = con.prepareStatement(query);
 			
@@ -152,8 +157,19 @@ public class CustomerDatabase {
 		}		
 			
   }
-
-
+  
+	public java.sql.Date transformDate(String dateStr){		
+	    DateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+	    java.util.Date date = null;
+		try {
+			date = (java.util.Date)formatter.parse(dateStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	    
+	    java.sql.Date dateDB = new java.sql.Date(date.getTime());		
+		return dateDB;
+	}
 } 
 
 

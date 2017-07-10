@@ -16,12 +16,17 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 public class SendRecommendation implements JavaDelegate {
 	 private final static Logger LOGGER = Logger.getLogger("RECOMMENDATIONS-REQUESTS");
 
-	  public void execute(DelegateExecution execution) throws Exception {
+	  @SuppressWarnings("null")
+	public void execute(DelegateExecution execution) throws Exception {
 	    LOGGER.info("Send Recommendations '" 
-	    		+ execution.getVariable("name") + "' age: '"
-	    		+ execution.getVariable("age") + "'...");
+	    		+ execution.getVariable("name") + "' country: '"
+	    		+ execution.getVariable("country") + "'...");
 	    
-	    //ajimenez
+	    //create db record with customer info
+	    CustomerDatabase cd = new CustomerDatabase();	   
+	    cd.createCustomerDbRecord(execution);
+	    
+	    //ajimenez	   
 	    
 	  //input variables
 	    String country = (execution.getVariable("country")).toString();

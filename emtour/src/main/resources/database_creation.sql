@@ -11,14 +11,15 @@ CREATE TABLE bill (
 );
 
 CREATE TABLE customer (
-  idcustomer INTEGER UNSIGNED NOT NULL,
+  idcustomer INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NULL,
-  birthDate DATE NULL,
-  budget FLOAT NULL,
-  desideredCity ENUM('PARIS','ROME','BUDAPEST') NULL,
-  travelStartDate DATE NULL,
-  travelEndDate DATE NULL,
+  lastName VARCHAR(255) NULL,
+  birthDate TIMESTAMP NULL,
   email VARCHAR(255) NULL,
+  budget FLOAT NULL,
+  desiredCity VARCHAR(255) NULL,
+  travelStartDate TIMESTAMP NULL,
+  travelEndDate TIMESTAMP NULL,
   children INTEGER UNSIGNED NULL,
   adult INTEGER UNSIGNED NULL,
   PRIMARY KEY(idcustomer)
@@ -29,7 +30,7 @@ CREATE TABLE emtour_recommendation (
   customer_idcustomer INTEGER UNSIGNED NOT NULL,
   price FLOAT NULL,
   description VARCHAR(255) NULL,
-  recomendedDestination ENUM('PARIS','ROME','BUDAPEST') NULL,
+  country VARCHAR(255) NULL,
   PRIMARY KEY(idemtour_recommendation),
   INDEX emtour_recommendation_FKIndex1(customer_idcustomer)
 );
