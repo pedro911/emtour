@@ -4,6 +4,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -32,7 +33,7 @@ public class CustomerDatabase {
     Map<String, Object> variables = delegateExecution.getVariables();
     System.out.println("variables here db creation:" + variables.toString());  
        
-    String query = String.format("INSERT INTO customer "
+    String insertQuery = String.format("INSERT INTO customer "
     		+ "(`name`, `lastName`, `birthDate`,`email`,`budget`,"
     		+ "`desiredCity`,`travelStartDate`,`travelEndDate`,`children`,`adult`)"
     		+ "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s');", 
@@ -43,16 +44,36 @@ public class CustomerDatabase {
     
 	Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
 	
-	PreparedStatement statement = con.prepareStatement(query);
+	PreparedStatement statement = con.prepareStatement(insertQuery);
 	
 	try { 
-		statement.executeUpdate();
-		System.out.println("Customer database insert success");
+		statement.executeUpdate();		
+		System.out.println("Customer database insert success");		
+		
 	} 
 	catch (SQLException e) { 
 		e.printStackTrace();
 	}
-		    
+	
+  }
+	
+  public String lastCustomerId() throws Exception{
+	String customerId="";	
+    Class.forName("com.mysql.jdbc.Driver");    
+	Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+	String lastIdquery = String.format("SELECT idcustomer FROM customer ORDER BY idcustomer DESC LIMIT 1");
+	PreparedStatement statement = con.prepareStatement(lastIdquery); 
+	ResultSet result = statement.executeQuery();	
+	try {
+		while (result.next()) {
+			customerId = result.getString("idcustomer");
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}  
+	System.out.println("Last customer Id inserted: "+customerId);
+	return customerId;
   }
 
   public void createContract (DelegateExecution delegateExecution) throws Exception {

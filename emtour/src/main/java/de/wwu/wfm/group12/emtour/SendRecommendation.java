@@ -14,10 +14,21 @@ public class SendRecommendation implements JavaDelegate {
 				+ execution.getVariable("country") + "'...");
 
 		// create db record with customer info
-		CustomerDatabase cd = new CustomerDatabase();
-		cd.createCustomerDbRecord(execution);
+		CustomerDatabase cdb = new CustomerDatabase();
+		cdb.createCustomerDbRecord(execution);
+		String customerId = cdb.lastCustomerId();
 		
 		// implement REST API to send recommendations to Funspark
+		/*
+		{
+		    "businessKey": "Instance_001",
+		    "messageName": "Message_AddInf",
+		    "processInstanceId": "7cc0d35d-680b-11e7-a49f-846920524153",
+		    "processVariables": {"Healthy": {
+		        "type": "Boolean",
+		        "value": "false"
+		    }}
+		}*/
 
 	}
 
