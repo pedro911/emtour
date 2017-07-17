@@ -127,7 +127,7 @@
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="FormField_375u6ua" label="Write a comment (optional)" type="string" />
+          <camunda:formField id="comment" label="Write a comment (optional)" type="string" />
           <camunda:formField id="more_info" label="Please check if FunSpark asked for more information." type="boolean" />
         </camunda:formData>
       </bpmn:extensionElements>

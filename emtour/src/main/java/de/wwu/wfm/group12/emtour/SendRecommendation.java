@@ -1,19 +1,14 @@
 package de.wwu.wfm.group12.emtour;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.connect.Connectors;
-import org.camunda.connect.httpclient.HttpConnector;
-import org.camunda.connect.httpclient.HttpRequest;
-import org.camunda.connect.httpclient.HttpResponse;
-
-import connectjar.org.apache.http.client.HttpClient;
-import connectjar.org.apache.http.client.methods.HttpUriRequest;
-import connectjar.org.apache.http.client.methods.RequestBuilder;
-import connectjar.org.apache.http.impl.client.HttpClients;
+import org.jboss.resteasy.client.ClientRequest;
+import org.jboss.resteasy.client.ClientResponse;
 
 
 
@@ -40,8 +35,8 @@ public class SendRecommendation implements JavaDelegate {
 		        "value": "false"
 		    }}
 		}*/
-		
-	/*	// build HTTP request with all variables as parameters
+		/*
+		// build HTTP request with all variables as parameters
 		HttpClient client = HttpClients.createDefault();
 		RequestBuilder requestBuilder = RequestBuilder.get()
 		.setUri("http://192.168.1.30:8080/engine-rest/request-received")
@@ -56,20 +51,24 @@ public class SendRecommendation implements JavaDelegate {
 		System.out.println(request.getURI());
 		System.out.println(response.getStatusLine());
 		
+			
 		HttpConnector http = Connectors.getConnector(HttpConnector.ID);
 		http.createRequest()
-		  .get()
+		  .post()
 		  .url("http://camunda.org")
 		  .execute();
 		
 		HttpResponse response = http.createRequest()
 				  .get()
 				  .header("Accept", "application/json")
-				  .url("http://camunda.org")
+				  .url("http://192.168.1.30:8080/engine-rest/process-definition/key/funspark-id/start")
 				  .execute();
+		
+		
 		HttpRequest request = http.createRequest();
+		HttpResponse response = request.getR
 		request.setRequestParameter("method", "GET");
-		request.setRequestParameter("url", "http://camunda.org");
+		request.setRequestParameter("url", "192.168.1.30:8080/engine-rest/authorization");
 		request.setRequestParameter("payload", "hello world!");
 		System.out.println(request.getUrl());
 		Integer statusCode = response.getStatusCode();
@@ -79,8 +78,36 @@ public class SendRecommendation implements JavaDelegate {
 		response.getResponseParameter("headers");
 		response.getResponseParameter("response");
 		//System.out.println(response.getStatusLine());
-		  
 		 */
+		
+		String input;
+		ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/process-definition/key/funspark-id/start");
+		// "http://requestb.in/w1pjs5w1");
+		request.accept("application/json");
+		
+		input = "{\"variables\":{ "
+				+ "\"name\":{\"value\":\""+execution.getVariable("name")+"\", \"type\": \"String\"},"
+				+ "\"desiredCity\":{\"value\":\""+execution.getVariable("desiredCity")+"\", \"type\": \"String\"}},"
+				+ "\"businessKey\":\""+execution.getId()+"\"}";
+		
+		System.out.println(input);
+		request.body("application/json", input);
+
+		ClientResponse<String> response = request.post(String.class);
+
+		if (response.getStatus() != 200) {
+			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+		}
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+				new ByteArrayInputStream(response.getEntity().getBytes())));	
+		
+		String output;
+		System.out.println("Output from Server. Status: ");
+		while ((output = br.readLine()) != null) {
+			System.out.println(output);
+		}
+		
 	}
 
 }
