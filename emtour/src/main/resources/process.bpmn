@@ -7,7 +7,7 @@
     <bpmn:messageFlow id="MessageFlow_0qsvx23" sourceRef="FunSpark_process" targetRef="IntermediateCatchEvent_048539y" />
     <bpmn:messageFlow id="MessageFlow_1bsb3a0" name="" sourceRef="Customer_process" targetRef="StartEvent_1" />
     <bpmn:messageFlow id="MessageFlow_1fwdk5t" name="" sourceRef="Task_07zb2we" targetRef="Customer_process" />
-    <bpmn:messageFlow id="MessageFlow_0cikwro" sourceRef="Customer_process" targetRef="IntermediateThrowEvent_1jlhp6n" />
+    <bpmn:messageFlow id="MessageFlow_0cikwro" sourceRef="Customer_process" targetRef="additional_infoAA" />
     <bpmn:messageFlow id="MessageFlow_0d9tgce" sourceRef="Task_0usuw02" targetRef="Customer_process" />
     <bpmn:messageFlow id="MessageFlow_1ij1okg" sourceRef="Customer_process" targetRef="IntermediateThrowEvent_1jbk5q4" />
     <bpmn:messageFlow id="MessageFlow_0795z1w" sourceRef="Task_0js36rr" targetRef="Customer_process" />
@@ -34,7 +34,7 @@
         <bpmn:flowNodeRef>Task_07zb2we</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateCatchEvent_049sc3k</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0n71rqw</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IntermediateThrowEvent_1jlhp6n</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>additional_infoAA</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_148vatr</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0js36rr</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateCatchEvent_048539y</bpmn:flowNodeRef>
@@ -88,6 +88,7 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
+          <camunda:formField id="funspark_activities" label="Funspark Acitivities" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0krfwuo</bpmn:incoming>
@@ -119,6 +120,8 @@
           </camunda:formField>
           <camunda:formField id="comment" label="Write a comment (optional)" type="string" />
           <camunda:formField id="more_info" label="Please check if FunSpark asked for more information." type="boolean" />
+          <camunda:formField id="funspark_recommendation" label="FunsPark Recommendation" type="string" />
+          <camunda:formField id="more_info_request" label="More info request from Funspark" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_03wb2hi</bpmn:incoming>
@@ -165,8 +168,10 @@
               <camunda:constraint name="readonly" />
             </camunda:validation>
           </camunda:formField>
-          <camunda:formField id="FormField_2r5qp9u" label="Write a comment (optional)" type="string" defaultValue="e.g. no selected activities from FunSpark" />
+          <camunda:formField id="comment" label="Write a comment (optional)" type="string" defaultValue="e.g. no selected activities from FunSpark" />
           <camunda:formField id="hasFunSparkActivity" label="Please check only if there is any FunSpark activity selected, if not, don not check." type="boolean" />
+          <camunda:formField id="funspark_banktransfer_code" label="Insert bank tranfer code from Funspark payment" type="string" />
+          <camunda:formField id="funspark_selected_activities" label="Funspark activities" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_17qnxng</bpmn:incoming>
@@ -239,7 +244,7 @@
             </camunda:validation>
           </camunda:formField>
           <camunda:formField id="FormField_076irab" label="Write a comment" type="string" defaultValue="Payment reference" />
-          <camunda:formField id="customerPayment" label="Please check if the customer has made the payment" type="boolean" />
+          <camunda:formField id="payment_status" label="Please check if the customer has made the payment" type="boolean" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1mp1nkg</bpmn:incoming>
@@ -256,13 +261,13 @@
     <bpmn:sequenceFlow id="SequenceFlow_0znxzio" sourceRef="Task_1t1baek" targetRef="ExclusiveGateway_0pik9oy" />
     <bpmn:sequenceFlow id="SequenceFlow_17qnxng" sourceRef="confirm_reservation" targetRef="Task_1t1baek" />
     <bpmn:sequenceFlow id="SequenceFlow_0d6e04y" name="Yes" sourceRef="ExclusiveGateway_0ldlysa" targetRef="confirm_reservation">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${customerPayment}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${payment_status}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_06zjphf" sourceRef="ProcessBill" targetRef="Task_0e85iia" />
     <bpmn:sequenceFlow id="SequenceFlow_1mp1nkg" sourceRef="Task_0e85iia" targetRef="Task_1q8e43g" />
     <bpmn:sequenceFlow id="SequenceFlow_1eqbizs" sourceRef="Task_1q8e43g" targetRef="ExclusiveGateway_0ldlysa" />
     <bpmn:sequenceFlow id="SequenceFlow_0cv75uj" name="No" sourceRef="ExclusiveGateway_0ldlysa" targetRef="EndEvent_1qhjt5t">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!customerPayment}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!payment_status}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0trivey" sourceRef="IntermediateThrowEvent_1jbk5q4" targetRef="ProcessBill" />
     <bpmn:sequenceFlow id="SequenceFlow_1ni0mb8" sourceRef="Task_148vatr" targetRef="IntermediateCatchEvent_048539y" />
@@ -283,8 +288,8 @@
       <bpmn:incoming>SequenceFlow_1wgav6e</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1002y6j</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:sequenceFlow id="SequenceFlow_1xjjq04" sourceRef="Task_07zb2we" targetRef="IntermediateThrowEvent_1jlhp6n" />
-    <bpmn:sequenceFlow id="SequenceFlow_05kw3an" sourceRef="IntermediateThrowEvent_1jlhp6n" targetRef="Task_0n71rqw" />
+    <bpmn:sequenceFlow id="SequenceFlow_1xjjq04" sourceRef="Task_07zb2we" targetRef="additional_infoAA" />
+    <bpmn:sequenceFlow id="SequenceFlow_05kw3an" sourceRef="additional_infoAA" targetRef="Task_0n71rqw" />
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1jbk5q4" name="Selected offers">
       <bpmn:incoming>SequenceFlow_188yszu</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0trivey</bpmn:outgoing>
@@ -321,7 +326,7 @@
       <bpmn:outgoing>SequenceFlow_05bk1g8</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1nfur15</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1jlhp6n" name="Additional information">
+    <bpmn:intermediateCatchEvent id="additional_infoAA" name="Additional information">
       <bpmn:incoming>SequenceFlow_1xjjq04</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_05kw3an</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_0yd22r1" />
@@ -412,10 +417,10 @@
           <dc:Bounds x="930" y="19" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="IntermediateCatchEvent_1fgyx5j_di" bpmnElement="IntermediateThrowEvent_1jlhp6n">
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_1fgyx5j_di" bpmnElement="additional_infoAA">
         <dc:Bounds x="942" y="279" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="965" y="227" width="53" height="24" />
+          <dc:Bounds x="931" y="322" width="53" height="24" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_16rwyru_di" bpmnElement="SequenceFlow_16rwyru">

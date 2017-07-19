@@ -13,17 +13,17 @@ import org.jboss.resteasy.client.ClientResponse;
 
 
 public class SendRecommendation implements JavaDelegate {
-	private final static Logger LOGGER = Logger.getLogger("RECOMMENDATIONS-REQUESTS");
+	private final static Logger LOGGER = Logger.getLogger("SEND-RECOMMENDATIONS");
 
 	public void execute(DelegateExecution execution) throws Exception {
-		LOGGER.info("Send Recommendations '" + execution.getVariable("name") + "' country: '"
-				+ execution.getVariable("country") + "'...");
+		LOGGER.info("Send Recommendations '" + execution.getVariable("name") + "' desired City: '"
+				+ execution.getVariable("desiredCity") + "'...");
 
 		// create db record with customer info and return customerID
 		CustomerDatabase cdb = new CustomerDatabase();
 		cdb.createCustomerDbRecord(execution);
 		String customerId = cdb.lastCustomerId();
-		
+		execution.setVariable("customerId", customerId);
 		
 		// RESTeasy Jboss API to send recommendations to Funspark
 				
@@ -32,9 +32,11 @@ public class SendRecommendation implements JavaDelegate {
 		request.accept("application/json");
 		
 		input = "{\"variables\":{ "
-				+ "\"name\":{\"value\":\""+execution.getVariable("name")+"\", \"type\": \"String\"},"				
-				+ "\"desiredCity\":{\"value\":\""+execution.getVariable("desiredCity")+"\", \"type\": \"String\"}},"
-				+ "\"businessKey\":\""+execution.getId()+"\"}";
+					+ "\"customerId\":{\"value\":\""+customerId+"\", \"type\": \"String\"},"
+					+ "\"name\":{\"value\":\""+execution.getVariable("name")+"\", \"type\": \"String\"},"				
+					+ "\"desiredCity\":{\"value\":\""+execution.getVariable("desiredCity")+"\", \"type\": \"String\"}"
+					+"}"
+				+ "}";
 		
 		System.out.println(input);
 		request.body("application/json", input);

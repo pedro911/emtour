@@ -13,7 +13,11 @@ public class AskInformation implements JavaDelegate {
 
 	  public void execute(DelegateExecution execution) throws Exception {
 	    LOGGER.info("Ask for more information '" 
-	    		+ execution.getVariable("name") + "' age: '"
-	    		+ execution.getVariable("age") + "'...");
+	    		+ execution.getVariable("name") + "' customerId: '"
+	    		+ execution.getVariable("customerId") + "'...");
+	  execution.setVariable("customer_info_updated", "Please send more info");  
+	  
+	  //implement email sending, add customerInfoUpdated variable
+	    
 	  }
 }

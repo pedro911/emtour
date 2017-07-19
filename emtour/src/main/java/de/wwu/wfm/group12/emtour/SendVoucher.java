@@ -9,12 +9,15 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 public class SendVoucher implements JavaDelegate {
-	 private final static Logger LOGGER = Logger.getLogger("RECOMMENDATIONS-REQUESTS");
+	 private final static Logger LOGGER = Logger.getLogger("SEND-VOUCHER");
 
 	  public void execute(DelegateExecution execution) throws Exception {
-	    LOGGER.info("Send Voucher '" 
-	    		+ execution.getVariable("name") + "' age: '"
-	    		+ execution.getVariable("age")  
-	    		+ "END ...");
+	  
+	  //implement send voucher mail
+	    
+	  LOGGER.info("Voucher Sent '" 
+		    		+ execution.getVariable("name") + "' customerId: '"
+		    		+ execution.getVariable("customerId")  
+		    		+ "END ...");	    
 	  }
 }
