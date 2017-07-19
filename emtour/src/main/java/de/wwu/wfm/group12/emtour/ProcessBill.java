@@ -10,7 +10,7 @@ public class ProcessBill implements JavaDelegate {
 	 private final static Logger LOGGER = Logger.getLogger("PROCESS-BILL");
 
 	  public void execute(DelegateExecution execution) throws Exception {
-	   /* 	    
+	    	    
 	   int activitySetPrice = 100;
 	   int bill;
 	   
@@ -24,7 +24,7 @@ public class ProcessBill implements JavaDelegate {
 	   bill = budget * adult + (budget/2) * children + activitySetPrice;  
 	   
 	   System.out.println("Total Bill is: " + bill + " Persons: " + String.valueOf(adult +children) + " City: " + execution.getVariable("desiredCity"));
-	   */
+	   
 	  
 	   LOGGER.info("Offers: '" 
 	    		+ execution.getVariable("offers") + "' City: '"

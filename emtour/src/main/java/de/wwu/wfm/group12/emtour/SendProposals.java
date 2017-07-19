@@ -12,7 +12,7 @@ public class SendProposals implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		LOGGER.info("Send Proposals to '" + execution.getVariable("name") + "' email: '"
 				+ execution.getVariable("email") + "'...");
-/*
+
 		// ajimenez
 
 		// input variables
@@ -44,7 +44,7 @@ public class SendProposals implements JavaDelegate {
 		String email = (execution.getVariable("email")).toString();
 
 		SendEmail.messageProposal(name, lastName, email, newDesiredCity);
-*/
+
 	}
 
 }

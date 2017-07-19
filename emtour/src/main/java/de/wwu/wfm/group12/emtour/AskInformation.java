@@ -15,9 +15,8 @@ public class AskInformation implements JavaDelegate {
 	    LOGGER.info("Ask for more information '" 
 	    		+ execution.getVariable("name") + "' customerId: '"
 	    		+ execution.getVariable("customerId") + "'...");
-	  execution.setVariable("customer_info_updated", "Please send more info");  
-	  
-	  //implement email sending, add customerInfoUpdated variable
+	  	  
+	  //implement email sending, add customer_info_updated variable
 	    
 	  }
 }
