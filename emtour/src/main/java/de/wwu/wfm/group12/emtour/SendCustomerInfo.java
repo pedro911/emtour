@@ -21,9 +21,9 @@ public class SendCustomerInfo implements JavaDelegate{
 	    		+ execution.getVariable("name") + "' customerId: '"
 	    		+ execution.getVariable("customerId") + "'...");
 		
-	    
+	    /*
 	    String input;
-		ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
+		ClientRequest request = new ClientRequest("http://localhost:8080/engine-rest/message");
 		request.accept("application/json");
 		
 		input = "{\"messageName\":\"more_info_result\","
@@ -55,7 +55,7 @@ public class SendCustomerInfo implements JavaDelegate{
 		}
 		else System.out.println("Output from Server. Status: "+response.getStatus());		
   
-	    
+	   */ 
 	    
 	  }
 }

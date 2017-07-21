@@ -18,6 +18,30 @@ public class SendVoucher implements JavaDelegate {
 	  LOGGER.info("Voucher Sent '" 
 		    		+ execution.getVariable("name") + "' customerId: '"
 		    		+ execution.getVariable("customerId")  
-		    		+ "END ...");	    
+		    		+ "END ...");	
+	  
+	  		// ajimenez
+			// send email voucher
+			String name = (execution.getVariable("name")).toString();
+			String lastName = (execution.getVariable("lastName")).toString();
+			String email = (execution.getVariable("email")).toString();
+			String desiredCity = (execution.getVariable("desiredCity")).toString();
+			String funspark_activities = (execution.getVariable("funspark_activities")).toString();
+			int children = ((Integer) execution.getVariable("children")).intValue();
+			int adult = (Integer) execution.getVariable("adult");
+		    String total_value = (execution.getVariable("total_value")).toString();
+		    String activitySetPrice = (execution.getVariable("activitySetPrice")).toString();
+		    String voucher = "City: " + desiredCity;
+			
+			boolean hasFunSparkActivity = ((Boolean)execution.getVariable("hasFunSparkActivity")).booleanValue();
+			if (hasFunSparkActivity == true){
+				voucher = voucher + "\n" + "Activities: " + funspark_activities + " - €" + activitySetPrice;
+			}
+			
+			voucher = voucher + " \n\n" + "Number of travelers: " + String.valueOf(adult +children) + " \n\n"+
+		    		"Total Bill is: €" + total_value;
+
+			SendEmail.messageSendVoucher(name, lastName, email, voucher);
+			System.out.println("SendEmail.messageSendVoucher done");
 	  }
 }

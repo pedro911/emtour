@@ -16,7 +16,16 @@ public class AskInformation implements JavaDelegate {
 	    		+ execution.getVariable("name") + "' customerId: '"
 	    		+ execution.getVariable("customerId") + "'...");
 	  	  
-	  //implement email sending, add customer_info_updated variable
+	    // implement email sending, add customer_info_updated variable
+	    // ajimenez
+	    // send email to ask for more information
+	    String name = (execution.getVariable("name")).toString();
+	    String lastName = (execution.getVariable("lastName")).toString();
+	    String email = (execution.getVariable("email")).toString();
+	    String more_info_request = (execution.getVariable("more_info_request")).toString();
+
+	    SendEmail.messageAskMoreInformation (name, lastName, email, more_info_request);
+	    System.out.println("SendEmail.messageAskMoreInformation done");
 	    
 	  }
 }

@@ -57,7 +57,7 @@ public class SendEmail {
 	}
 	
 	
-	public static void mesaggeSendVoucher (String name, String lastName, String email, String voucher){
+	public static void messageSendVoucher (String name, String lastName, String email, String voucher){
 		
 		String subject = "emTour Voucher";
 		

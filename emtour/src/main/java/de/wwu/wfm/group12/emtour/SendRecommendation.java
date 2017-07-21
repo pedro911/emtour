@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -25,10 +26,45 @@ public class SendRecommendation implements JavaDelegate {
 		String customerId = cdb.lastCustomerId();
 		execution.setVariable("customerId", customerId);
 		
-		// RESTeasy Jboss API to send recommendations to Funspark
+		// ajimenez
+		// input variables
+		String country = (execution.getVariable("country")).toString();
+		String budget = (execution.getVariable("budget")).toString();
+		String children = (execution.getVariable("children")).toString();
+		System.out.println("Our recommendation is (input): |" + country + "|" + budget + "|" + children + "|");
+
+		// get variable of recommendations from DMN
+		String desiredCity = (execution.getVariable("desiredCity")).toString();
+		System.out.println("Our recommendation is (variables): " + desiredCity);
+
+		// split recommendations
+		String[] desired = desiredCity.split(Pattern.quote("|"));
+		String recommendedDestination = desired[0];
+		String description = desired[1];
+		String price = desired[2];
+		System.out.println("Our recommendation is (split): " + recommendedDestination + " - " + description + " - " + price);
+
+		// put recommendations in a nice way
+		String outputRecommendation = recommendedDestination + " - " + description + " - Subtotal: €" + price;
+		execution.setVariable("desiredCity", outputRecommendation);
+		String newDesiredCity = (execution.getVariable("desiredCity")).toString();
+		System.out.println("Our recommendation is (outputRecommendation): " + newDesiredCity);
+		
+		// save splitted variables from DMN result
+		execution.setVariable("recommendedDestination", recommendedDestination);
+		execution.setVariable("description", description);
+		execution.setVariable("price", price);
+		
+		// replace with semicolons to send to Funspark
+		String semicolonsRecommendation = recommendedDestination + ";" + description + ";" + price;
+		System.out.println("Our recommendation sent to Funspark: " + semicolonsRecommendation);
 				
+		
+		
+		// RESTeasy Jboss API to send recommendations to Funspark
+		/*		
 		String input;
-		ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/process-definition/key/funspark-id/start");
+		ClientRequest request = new ClientRequest("http://localhost:8080/engine-rest/process-definition/key/funspark-id/start");
 		request.accept("application/json");
 		
 		input = "{\"variables\":{ "
@@ -55,6 +91,7 @@ public class SendRecommendation implements JavaDelegate {
 		while ((output = br.readLine()) != null) {
 			System.out.println(output);
 		}
+		*/
 		
 	}
 

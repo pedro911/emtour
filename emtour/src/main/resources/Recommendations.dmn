@@ -20,7 +20,7 @@
 </inputEntry>
         <inputEntry id="UnaryTests_0t06iif">        <text><![CDATA[<= 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1sqog25">        <text>0</text>
+        <inputEntry id="UnaryTests_1sqog25">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_1ck3jnn">        <text><![CDATA["Budapest|Lufthansa Flight 2030, Hotel Star Inn Budapest Centrum|1900"]]></text>
 </outputEntry>
@@ -30,7 +30,7 @@
 </inputEntry>
         <inputEntry id="UnaryTests_0ju6gjq">        <text><![CDATA[>2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1supc6p">        <text><![CDATA[> 0]]></text>
+        <inputEntry id="UnaryTests_1supc6p">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_0ei4mti">        <text><![CDATA["Eger|Germanwings Flight 4100, Hotel Korona|3200 "]]></text>
 </outputEntry>
@@ -80,7 +80,7 @@
 </inputEntry>
         <inputEntry id="UnaryTests_0z2dmur">        <text><![CDATA[<= 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1het9m9">        <text>0</text>
+        <inputEntry id="UnaryTests_1het9m9">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_1cuj6hg">        <text><![CDATA["Gori|Pegasus Airlines Flight 170,  Hotel Guest House Nitza|1500"]]></text>
 </outputEntry>
@@ -90,7 +90,7 @@
 </inputEntry>
         <inputEntry id="UnaryTests_07n88gi">        <text><![CDATA[> 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_16k8p1c">        <text><![CDATA[> 0]]></text>
+        <inputEntry id="UnaryTests_16k8p1c">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_0g6h5u9">        <text><![CDATA["Tbilisi|Turkish Airlines Flight 171, Hotel Holiday Inn|2400"]]></text>
 </outputEntry>
@@ -100,7 +100,7 @@
 </inputEntry>
         <inputEntry id="UnaryTests_04j3ll8">        <text><![CDATA[<= 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_019cjkz">        <text>0</text>
+        <inputEntry id="UnaryTests_019cjkz">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_1tmimu0">        <text><![CDATA["Prague|Germanwings Flight 5509, Hotel Maximilian|1900"]]></text>
 </outputEntry>
@@ -110,7 +110,7 @@
 </inputEntry>
         <inputEntry id="UnaryTests_0utr778">        <text><![CDATA[> 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1q79a0a">        <text><![CDATA[> 0]]></text>
+        <inputEntry id="UnaryTests_1q79a0a">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_18i905f">        <text><![CDATA["Brno|Lufthansa Flight 109, Hotel Barcelo Brno Palace|2600"]]></text>
 </outputEntry>
@@ -198,7 +198,7 @@
       <rule id="row-493264015-12">
         <inputEntry id="UnaryTests_1x1gzk6">        <text><![CDATA["Maldives"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1ifsp9u">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_1ifsp9u">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1lsfy08">        <text>0</text>
 </inputEntry>
@@ -208,7 +208,7 @@
       <rule id="row-493264015-13">
         <inputEntry id="UnaryTests_02muvi4">        <text><![CDATA["Maldives"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1bzgkrx">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_1bzgkrx">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1wvxbk2">        <text><![CDATA[> 0]]></text>
 </inputEntry>
@@ -218,7 +218,7 @@
       <rule id="row-493264015-14">
         <inputEntry id="UnaryTests_0uflmvo">        <text><![CDATA["France"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_01g231k">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_01g231k">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_0ksbhnn">        <text>0</text>
 </inputEntry>
@@ -228,7 +228,7 @@
       <rule id="row-493264015-15">
         <inputEntry id="UnaryTests_118eytt">        <text><![CDATA["France"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_0139xh8">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_0139xh8">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_0otkk7z">        <text><![CDATA[> 0]]></text>
 </inputEntry>
@@ -238,7 +238,7 @@
       <rule id="row-493264015-16">
         <inputEntry id="UnaryTests_0iaqufb">        <text><![CDATA["USA"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_100ztb3">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_100ztb3">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_0sh6uwm">        <text>0</text>
 </inputEntry>
@@ -248,7 +248,7 @@
       <rule id="row-493264015-17">
         <inputEntry id="UnaryTests_0ibr60a">        <text><![CDATA["USA"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1xi952r">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_1xi952r">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1a8i4v3">        <text><![CDATA[> 0]]></text>
 </inputEntry>
@@ -258,7 +258,7 @@
       <rule id="row-493264015-18">
         <inputEntry id="UnaryTests_1uzyrty">        <text><![CDATA["Bali"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_16ay18z">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_16ay18z">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1o1hbah">        <text>0</text>
 </inputEntry>
@@ -268,7 +268,7 @@
       <rule id="row-493264015-19">
         <inputEntry id="UnaryTests_1129868">        <text><![CDATA["Bali"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_0xefy04">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_0xefy04">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_0fqye1n">        <text><![CDATA[> 0]]></text>
 </inputEntry>
@@ -278,7 +278,7 @@
       <rule id="row-493264015-20">
         <inputEntry id="UnaryTests_0276m4z">        <text><![CDATA["Dubai"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_0k01mte">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_0k01mte">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_0oeky1s">        <text>0</text>
 </inputEntry>
@@ -288,7 +288,7 @@
       <rule id="row-493264015-21">
         <inputEntry id="UnaryTests_02nwonl">        <text><![CDATA["Dubai"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1yuxig7">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_1yuxig7">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_03a7644">        <text><![CDATA[> 0]]></text>
 </inputEntry>
@@ -300,7 +300,7 @@
 </inputEntry>
         <inputEntry id="UnaryTests_1w31btl">        <text><![CDATA[> 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_06utxu5">        <text>0</text>
+        <inputEntry id="UnaryTests_06utxu5">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_141mzj0">        <text><![CDATA["Oslo|Eurowings Flight 2876, Hotel Scandic Helsfyr |4300"]]></text>
 </outputEntry>
@@ -308,9 +308,9 @@
       <rule id="row-493264015-23">
         <inputEntry id="UnaryTests_059puvu">        <text><![CDATA["Norway"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1fj9fdx">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_1fj9fdx">        <text><![CDATA[<= 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1bvesao">        <text><![CDATA[> 0]]></text>
+        <inputEntry id="UnaryTests_1bvesao">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_179ew6r">        <text><![CDATA["Sandefjord|KLM Flight 3211, Hotel Scandic Park Sandefjord|4800"]]></text>
 </outputEntry>
@@ -320,7 +320,7 @@
 </inputEntry>
         <inputEntry id="UnaryTests_1pjdcgo">        <text><![CDATA[> 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1ymyw9k">        <text>0</text>
+        <inputEntry id="UnaryTests_1ymyw9k">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_019ew52">        <text><![CDATA["Canberra|Emirates Flight 3217, Hotel Avenue|4900"]]></text>
 </outputEntry>
@@ -328,9 +328,9 @@
       <rule id="row-493264015-25">
         <inputEntry id="UnaryTests_1c3f0s2">        <text><![CDATA["Australia"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_10tstzm">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_10tstzm">        <text><![CDATA[<= 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1dye23e">        <text><![CDATA[> 0]]></text>
+        <inputEntry id="UnaryTests_1dye23e">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_0mggnk6">        <text><![CDATA["Melbourne|Emirates Flight 4298, Hotel Windsor|5900"]]></text>
 </outputEntry>
@@ -348,9 +348,9 @@
       <rule id="row-493264015-27">
         <inputEntry id="UnaryTests_163ualj">        <text><![CDATA["Shanghai"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_0fkka5v">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_0fkka5v">        <text></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_0j39a51">        <text><![CDATA[> 0]]></text>
+        <inputEntry id="UnaryTests_0j39a51">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_0dz00ko">        <text><![CDATA["Shanghai|Air France Flight 3000, Hotel Astor House|7300"]]></text>
 </outputEntry>
@@ -360,7 +360,7 @@
 </inputEntry>
         <inputEntry id="UnaryTests_1jchopz">        <text><![CDATA[> 2000]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_06pay5e">        <text>0</text>
+        <inputEntry id="UnaryTests_06pay5e">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_1gtppjw">        <text><![CDATA["Nazareth|Lufthansa Flight 7540, Hotel Legacy|4500"]]></text>
 </outputEntry>
@@ -368,9 +368,9 @@
       <rule id="row-493264015-29">
         <inputEntry id="UnaryTests_04o1795">        <text><![CDATA["Israel"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_10univt">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_10univt">        <text></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1xa97ix">        <text><![CDATA[> 0]]></text>
+        <inputEntry id="UnaryTests_1xa97ix">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_0ivcr2v">        <text><![CDATA["Tel Aviv|Lufthansa Flight 2392, Hotel Abratel Suites|5100"]]></text>
 </outputEntry>
@@ -378,7 +378,7 @@
       <rule id="row-493264015-30">
         <inputEntry id="UnaryTests_0d16qd7">        <text><![CDATA["UK"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_155nr6j">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_155nr6j">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1945sxy">        <text>0</text>
 </inputEntry>
@@ -388,7 +388,7 @@
       <rule id="row-493264015-31">
         <inputEntry id="UnaryTests_0sjxpf8">        <text><![CDATA["UK"]]></text>
 </inputEntry>
-        <inputEntry id="UnaryTests_1ladiy6">        <text><![CDATA[> 2000]]></text>
+        <inputEntry id="UnaryTests_1ladiy6">        <text></text>
 </inputEntry>
         <inputEntry id="UnaryTests_02y6r78">        <text><![CDATA[> 0]]></text>
 </inputEntry>

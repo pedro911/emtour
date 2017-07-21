@@ -21,6 +21,7 @@ public class SendPayment implements JavaDelegate {
 	    		+ execution.getVariable("name") + "' customerId: '"
 	    		+ execution.getVariable("customerId") + "'...");
 	    
+	    /*
 	    String input;
 		ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
 		request.accept("application/json");
@@ -54,7 +55,7 @@ public class SendPayment implements JavaDelegate {
 			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 		}
 		else System.out.println("Output from Server. Status: "+response.getStatus());		
-  
+  		*/
 	    
 	  }
 }
