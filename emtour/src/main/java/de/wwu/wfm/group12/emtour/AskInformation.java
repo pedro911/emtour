@@ -22,9 +22,10 @@ public class AskInformation implements JavaDelegate {
 	    String name = (execution.getVariable("name")).toString();
 	    String lastName = (execution.getVariable("lastName")).toString();
 	    String email = (execution.getVariable("email")).toString();
-	    String more_info_request = (execution.getVariable("more_info_request")).toString();
+	    //String more_info_request = (execution.getVariable("more_info_request")).toString();
+	    String more_info_request = "Are you healthy?";
 
-	    SendEmail.messageAskMoreInformation (name, lastName, email, more_info_request);
+	    //SendEmail.messageAskMoreInformation (name, lastName, email, more_info_request);
 	    System.out.println("SendEmail.messageAskMoreInformation done");
 	    
 	  }

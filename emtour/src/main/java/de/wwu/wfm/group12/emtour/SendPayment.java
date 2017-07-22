@@ -21,19 +21,19 @@ public class SendPayment implements JavaDelegate {
 	    		+ execution.getVariable("name") + "' customerId: '"
 	    		+ execution.getVariable("customerId") + "'...");
 	    
-	    /*
+	    
 	    String input;
-		ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
-		request.accept("application/json");
+		//ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
+	    ClientRequest request = new ClientRequest("http://188.109.211.82:8080/engine-rest/message");
+	    request.accept("application/json");
 		
-		input = "{\"messageName\":\"payment_confirmation\","
+		input = "{\"messageName\":\"Message_BookingInf\","
 				+ "\"correlationKeys\":{ "
 						+ "\"customerId\":{\"value\":\""+execution.getVariable("customerId")+"\", \"type\": \"String\"}"											
 					+ "},"
-				+ "\"processVariables\":{ "
-						+ "\"payment_status\":{\"value\":\""+execution.getVariable("payment_status")+"\", \"type\": \"Boolean\"},"
-						+ "\"funspark_banktransfer_code\":{\"value\":\""+execution.getVariable("funspark_banktransfer_code")+"\", \"type\": \"String\"},"
-						+ "\"funspark_selected_activities\":{\"value\":\""+execution.getVariable("funspark_selected_activities")+"\", \"type\": \"String\"}"
+				+ "\"processVariables\":{ "						
+						+ "\"funspark_banktransfer_code\":{\"value\":\""+execution.getVariable("funspark_banktransfer_code")+"\", \"type\": \"String\"},"						
+						+ "\"BookedActivityIDs\":{\"value\":\""+execution.getVariable("ActivityIDs")+"\", \"type\": \"String\"}"
 					+ "}"
 				+"}";
 		
@@ -55,7 +55,7 @@ public class SendPayment implements JavaDelegate {
 			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 		}
 		else System.out.println("Output from Server. Status: "+response.getStatus());		
-  		*/
+  		
 	    
 	  }
 }

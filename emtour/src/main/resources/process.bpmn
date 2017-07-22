@@ -14,19 +14,17 @@
     <bpmn:messageFlow id="MessageFlow_140htb1" sourceRef="Task_0n71rqw" targetRef="FunSpark_process" />
     <bpmn:messageFlow id="MessageFlow_1i5fmce" sourceRef="Task_148vatr" targetRef="FunSpark_process" />
     <bpmn:messageFlow id="MessageFlow_0n9ysz0" sourceRef="Task_0e85iia" targetRef="Customer_process" />
-    <bpmn:messageFlow id="MessageFlow_1eloxdl" sourceRef="FunSpark_process" targetRef="IntermediateCatchEvent_049sc3k" />
     <bpmn:messageFlow id="MessageFlow_0gnpu4f" sourceRef="FunSpark_process" targetRef="funspark_answer" />
+    <bpmn:messageFlow id="MessageFlow_0b73l3z" sourceRef="FunSpark_process" targetRef="receive_funspark_activities" />
   </bpmn:collaboration>
   <bpmn:process id="em1" name="Em Tour" isExecutable="true" camunda:versionTag="0.1">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_01v438b" name="System">
         <bpmn:flowNodeRef>Task_0e85iia</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>funspark_answer</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_18j4kho</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0pik9oy</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>generate_recommendations-DMN</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>send_recommendations_to_funspark</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_1jbk5q4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0usuw02</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ProcessBill</bpmn:flowNodeRef>
@@ -36,28 +34,21 @@
         <bpmn:flowNodeRef>Task_07zb2we</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>additional_infoAA</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0n71rqw</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IntermediateCatchEvent_049sc3k</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1qhjt5t</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>send_recommendations_to_funspark</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>receive_funspark_activities</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Additional_info_needed_gateway</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>funspark_answer</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1348d7a" name="Clerk">
         <bpmn:flowNodeRef>Task_1qwik3k</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>check_funspark_answer</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1t1baek</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>confirm_reservation</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1q8e43g</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0ldlysa</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_012kmzp</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_16rwyru" sourceRef="Task_1qwik3k" targetRef="Task_0usuw02" />
-    <bpmn:sequenceFlow id="SequenceFlow_016uvto" sourceRef="check_funspark_answer" targetRef="ExclusiveGateway_012kmzp" />
-    <bpmn:sequenceFlow id="SequenceFlow_05bk1g8" name="No" sourceRef="ExclusiveGateway_012kmzp" targetRef="Task_1qwik3k">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!more_info}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1nfur15" name="Yes" sourceRef="ExclusiveGateway_012kmzp" targetRef="Task_07zb2we">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${more_info}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_0krfwuo" sourceRef="IntermediateCatchEvent_049sc3k" targetRef="Task_1qwik3k" />
     <bpmn:userTask id="Task_1qwik3k" name="Merge recommendations (emTour and FunSpark)" camunda:assignee="john">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -82,7 +73,7 @@
             </camunda:validation>
           </camunda:formField>
           <camunda:formField id="FormField_1ae41md" label="Write a comment (optional)" type="string" defaultValue="e.g. e-mail with the recommendations (funspark+emtour) ready to send to the customer" />
-          <camunda:formField id="funspark_activities" label="Funspark Acitivities" type="string">
+          <camunda:formField id="ActivityDescs" label="Funspark Acitivities" type="string">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
@@ -92,65 +83,23 @@
               <camunda:constraint name="required" />
             </camunda:validation>
           </camunda:formField>
+          <camunda:formField id="ActivityIDs" label="Funspark activities ID" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="ActivityPrices" label="Funspark Activities Prices" type="string">
+            <camunda:validation>
+              <camunda:constraint name="readonly" />
+            </camunda:validation>
+          </camunda:formField>
         </camunda:formData>
       </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0krfwuo</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_05bk1g8</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0v86wb5</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_16rwyru</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="check_funspark_answer" name="Check if FunSpark asked more customer information" camunda:assignee="john">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="name" label="Name" type="string">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="lastName" label="Last Name" type="string">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="email" label="e-mail" type="string">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="desiredCity" label="Desired City" type="string">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="comment" label="Write a comment (optional)" type="string" />
-          <camunda:formField id="funspark_activities" label="FunsPark Activities" type="string">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="more_info_request" label="More info request from Funspark" type="string">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-          <camunda:formField id="more_info" label="Please check if FunSpark asked for more information." type="boolean">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_03wb2hi</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_016uvto</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_1wgav6e" sourceRef="generate_recommendations-DMN" targetRef="send_recommendations_to_funspark" />
     <bpmn:sequenceFlow id="SequenceFlow_1ww1185" sourceRef="StartEvent_1" targetRef="generate_recommendations-DMN" />
-    <bpmn:intermediateCatchEvent id="funspark_answer" name="FunSpark answer">
-      <bpmn:incoming>SequenceFlow_1002y6j</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_03wb2hi</bpmn:outgoing>
-      <bpmn:messageEventDefinition messageRef="Message_1fr17km" />
-    </bpmn:intermediateCatchEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_03wb2hi" sourceRef="funspark_answer" targetRef="check_funspark_answer" />
-    <bpmn:sequenceFlow id="SequenceFlow_1002y6j" sourceRef="send_recommendations_to_funspark" targetRef="funspark_answer" />
     <bpmn:sequenceFlow id="SequenceFlow_188yszu" sourceRef="Task_0usuw02" targetRef="IntermediateThrowEvent_1jbk5q4" />
     <bpmn:endEvent id="EndEvent_18j4kho">
       <bpmn:incoming>SequenceFlow_08s3hn6</bpmn:incoming>
@@ -190,7 +139,7 @@
             </camunda:validation>
           </camunda:formField>
           <camunda:formField id="funspark_banktransfer_code" label="Insert bank tranfer code from Funspark payment" type="string" />
-          <camunda:formField id="funspark_activities" label="Funspark activities" type="string">
+          <camunda:formField id="ActivityDescs" label="Funspark activities" type="string">
             <camunda:validation>
               <camunda:constraint name="readonly" />
             </camunda:validation>
@@ -308,10 +257,6 @@
       <bpmn:incoming>SequenceFlow_1ww1185</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1wgav6e</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:sendTask id="send_recommendations_to_funspark" name="Send recommendations and customer information" camunda:class="de.wwu.wfm.group12.emtour.SendRecommendation">
-      <bpmn:incoming>SequenceFlow_1wgav6e</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1002y6j</bpmn:outgoing>
-    </bpmn:sendTask>
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1jbk5q4" name="Selected offers">
       <bpmn:incoming>SequenceFlow_188yszu</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0trivey</bpmn:outgoing>
@@ -330,11 +275,6 @@
       <bpmn:incoming>SequenceFlow_0trivey</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_06zjphf</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:exclusiveGateway id="ExclusiveGateway_012kmzp" name="Did FunSpark ask for more customer information?">
-      <bpmn:incoming>SequenceFlow_016uvto</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_05bk1g8</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_1nfur15</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_08fhf2y" sourceRef="IntermediateCatchEvent_048539y" targetRef="Task_0js36rr" />
     <bpmn:sequenceFlow id="SequenceFlow_1mqhpzg" name="No" sourceRef="ExclusiveGateway_0pik9oy" targetRef="Task_0js36rr">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!hasFunSparkActivity}</bpmn:conditionExpression>
@@ -354,7 +294,7 @@
       <bpmn:messageEventDefinition messageRef="Message_1v5affj" />
     </bpmn:intermediateCatchEvent>
     <bpmn:sendTask id="Task_07zb2we" name="Ask for more information" camunda:class="de.wwu.wfm.group12.emtour.AskInformation">
-      <bpmn:incoming>SequenceFlow_1nfur15</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0y4rrgk</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1xjjq04</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:intermediateCatchEvent id="additional_infoAA" name="Additional information">
@@ -364,19 +304,43 @@
     </bpmn:intermediateCatchEvent>
     <bpmn:sendTask id="Task_0n71rqw" name="Send additional Customer information " camunda:class="de.wwu.wfm.group12.emtour.SendCustomerInfo">
       <bpmn:incoming>SequenceFlow_05kw3an</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_05itrjt</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0zjeq2f</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_049sc3k" name="FunSpark activities set">
-      <bpmn:incoming>SequenceFlow_05itrjt</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0krfwuo</bpmn:outgoing>
-      <bpmn:messageEventDefinition messageRef="Message_0niukoa" />
-    </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1xjjq04" sourceRef="Task_07zb2we" targetRef="additional_infoAA" />
     <bpmn:sequenceFlow id="SequenceFlow_05kw3an" sourceRef="additional_infoAA" targetRef="Task_0n71rqw" />
-    <bpmn:sequenceFlow id="SequenceFlow_05itrjt" sourceRef="Task_0n71rqw" targetRef="IntermediateCatchEvent_049sc3k" />
     <bpmn:endEvent id="EndEvent_1qhjt5t" name="End">
       <bpmn:incoming>SequenceFlow_0cv75uj</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sendTask id="send_recommendations_to_funspark" name="Send recommendations and customer information" camunda:class="de.wwu.wfm.group12.emtour.SendRecommendation">
+      <bpmn:incoming>SequenceFlow_1wgav6e</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0yqv1u4</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0v86wb5" sourceRef="receive_funspark_activities" targetRef="Task_1qwik3k" />
+    <bpmn:sequenceFlow id="SequenceFlow_0yqv1u4" sourceRef="send_recommendations_to_funspark" targetRef="funspark_answer" />
+    <bpmn:sequenceFlow id="SequenceFlow_0zjeq2f" sourceRef="Task_0n71rqw" targetRef="receive_funspark_activities" />
+    <bpmn:intermediateCatchEvent id="receive_funspark_activities" name="Funspark&#39;s activities">
+      <bpmn:incoming>SequenceFlow_0zjeq2f</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0c1mzw1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0v86wb5</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_18pgpoa" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0y4rrgk" name="Yes" sourceRef="Additional_info_needed_gateway" targetRef="Task_07zb2we">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${AdditionalInformationNeeded}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_0c1mzw1" name="No" sourceRef="Additional_info_needed_gateway" targetRef="receive_funspark_activities">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!AdditionalInformationNeeded}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="Additional_info_needed_gateway" name="Does Funspark need more customer&#39;s info?">
+      <bpmn:incoming>SequenceFlow_13ah40d</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0y4rrgk</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0c1mzw1</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:intermediateCatchEvent id="funspark_answer" name="FunSpark needs more customer&#39;s info">
+      <bpmn:incoming>SequenceFlow_0yqv1u4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_13ah40d</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_1fr17km" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_13ah40d" sourceRef="funspark_answer" targetRef="Additional_info_needed_gateway" />
     <bpmn:association id="Association_07e1yo4" sourceRef="generate_recommendations-DMN" targetRef="TextAnnotation_0gjpxwi" />
     <bpmn:association id="Association_0axpoop" sourceRef="ProcessBill" targetRef="TextAnnotation_0hxu3wv" />
     <bpmn:textAnnotation id="TextAnnotation_0gjpxwi">    <bpmn:text>Rules engine</bpmn:text>
@@ -386,13 +350,14 @@
   </bpmn:process>
   <bpmn:process id="FunSpark" isExecutable="false" />
   <bpmn:process id="Customer" isExecutable="false" />
-  <bpmn:message id="Message_1v5affj" name="funspark_voucher" />
+  <bpmn:message id="Message_1v5affj" name="Message_Voucher" />
   <bpmn:message id="Message_0fpbiqx" name="customer_info" />
-  <bpmn:message id="Message_1fr17km" name="funspark_recommendations" />
+  <bpmn:message id="Message_1fr17km" name="Message_AddInf" />
   <bpmn:message id="Message_0yd22r1" name="additional_info" />
   <bpmn:message id="Message_0niukoa" name="funspark_activities_reviewed" />
   <bpmn:message id="Message_1tnu3ev" name="selected_offers" />
   <bpmn:message id="Message_1urbv4d" name="payment_received" />
+  <bpmn:message id="Message_18pgpoa" name="SendActivities" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0wzs1nq">
       <bpmndi:BPMNShape id="Participant_0ozrkfj_di" bpmnElement="emtour">
@@ -402,7 +367,7 @@
         <dc:Bounds x="123" y="489" width="2543" height="139" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SendTask_16ye3ze_di" bpmnElement="send_recommendations_to_funspark">
-        <dc:Bounds x="466" y="157" width="100" height="80" />
+        <dc:Bounds x="449" y="157" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SendTask_09ifn5h_di" bpmnElement="Task_148vatr">
         <dc:Bounds x="2288" y="257" width="100" height="80" />
@@ -498,19 +463,6 @@
           <dc:Bounds x="1050" y="357" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_05bk1g8_di" bpmnElement="SequenceFlow_05bk1g8">
-        <di:waypoint xsi:type="dc:Point" x="782" y="-104" />
-        <di:waypoint xsi:type="dc:Point" x="1177" y="-104" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="882.2142857142859" y="-127.00000000000003" width="14" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="IntermediateCatchEvent_049sc3k_di" bpmnElement="IntermediateCatchEvent_049sc3k">
-        <dc:Bounds x="1209" y="179" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1228" y="214" width="60" height="24" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_048539y_di" bpmnElement="IntermediateCatchEvent_048539y">
         <dc:Bounds x="2464" y="279" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -524,12 +476,6 @@
           <dc:Bounds x="2308" y="407" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ExclusiveGateway_19srh8v_di" bpmnElement="ExclusiveGateway_012kmzp" isMarkerVisible="true">
-        <dc:Bounds x="730" y="-129" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="711" y="-184" width="88" height="48" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_18j4kho_di" bpmnElement="EndEvent_18j4kho">
         <dc:Bounds x="2602" y="179" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -542,21 +488,6 @@
       <bpmndi:BPMNShape id="Lane_1348d7a_di" bpmnElement="Lane_1348d7a">
         <dc:Bounds x="153" y="-192" width="2507" height="159" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1nfur15_di" bpmnElement="SequenceFlow_1nfur15">
-        <di:waypoint xsi:type="dc:Point" x="755" y="-79" />
-        <di:waypoint xsi:type="dc:Point" x="755" y="197" />
-        <di:waypoint xsi:type="dc:Point" x="793" y="197" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="733" y="32.446808510638306" width="18" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_05itrjt_di" bpmnElement="SequenceFlow_05itrjt">
-        <di:waypoint xsi:type="dc:Point" x="1130" y="197" />
-        <di:waypoint xsi:type="dc:Point" x="1209" y="197" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1125" y="176" width="90" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_08s3hn6_di" bpmnElement="SequenceFlow_08s3hn6">
         <di:waypoint xsi:type="dc:Point" x="2532" y="197" />
         <di:waypoint xsi:type="dc:Point" x="2602" y="197" />
@@ -601,18 +532,6 @@
       <bpmndi:BPMNShape id="UserTask_0ri0bag_di" bpmnElement="confirm_reservation">
         <dc:Bounds x="2016" y="-144" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0fx03oi_di" bpmnElement="check_funspark_answer">
-        <dc:Bounds x="577" y="-144" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_016uvto_di" bpmnElement="SequenceFlow_016uvto">
-        <di:waypoint xsi:type="dc:Point" x="677" y="-104" />
-        <di:waypoint xsi:type="dc:Point" x="700" y="-104" />
-        <di:waypoint xsi:type="dc:Point" x="700" y="-104" />
-        <di:waypoint xsi:type="dc:Point" x="730" y="-104" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="670" y="-110" width="90" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_17qnxng_di" bpmnElement="SequenceFlow_17qnxng">
         <di:waypoint xsi:type="dc:Point" x="2116" y="-104" />
         <di:waypoint xsi:type="dc:Point" x="2154" y="-104" />
@@ -630,20 +549,6 @@
         <di:waypoint xsi:type="dc:Point" x="2204" y="172" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="2174" y="48" width="90" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0krfwuo_di" bpmnElement="SequenceFlow_0krfwuo">
-        <di:waypoint xsi:type="dc:Point" x="1227" y="179" />
-        <di:waypoint xsi:type="dc:Point" x="1227" y="-64" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1197" y="51.5" width="90" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="MessageFlow_1eloxdl_di" bpmnElement="MessageFlow_1eloxdl">
-        <di:waypoint xsi:type="dc:Point" x="1223" y="489" />
-        <di:waypoint xsi:type="dc:Point" x="1223" y="214" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1193" y="345.5" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_06zjphf_di" bpmnElement="SequenceFlow_06zjphf">
@@ -685,9 +590,9 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1wgav6e_di" bpmnElement="SequenceFlow_1wgav6e">
         <di:waypoint xsi:type="dc:Point" x="414" y="197" />
-        <di:waypoint xsi:type="dc:Point" x="466" y="197" />
+        <di:waypoint xsi:type="dc:Point" x="449" y="197" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="395" y="176" width="90" height="12" />
+          <dc:Bounds x="386.5" y="176" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1ww1185_di" bpmnElement="SequenceFlow_1ww1185">
@@ -728,30 +633,16 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_0wuhvca_di" bpmnElement="funspark_answer">
-        <dc:Bounds x="609" y="179" width="36" height="36" />
+        <dc:Bounds x="600" y="179" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="583" y="223" width="87" height="12" />
+          <dc:Bounds x="577" y="134" width="82" height="36" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_03wb2hi_di" bpmnElement="SequenceFlow_03wb2hi">
-        <di:waypoint xsi:type="dc:Point" x="627" y="179" />
-        <di:waypoint xsi:type="dc:Point" x="627" y="-64" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="642" y="51.5" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1002y6j_di" bpmnElement="SequenceFlow_1002y6j">
-        <di:waypoint xsi:type="dc:Point" x="566" y="197" />
-        <di:waypoint xsi:type="dc:Point" x="609" y="197" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="587.5" y="176" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_0gnpu4f_di" bpmnElement="MessageFlow_0gnpu4f">
-        <di:waypoint xsi:type="dc:Point" x="622" y="489" />
-        <di:waypoint xsi:type="dc:Point" x="622" y="214" />
+        <di:waypoint xsi:type="dc:Point" x="614" y="489" />
+        <di:waypoint xsi:type="dc:Point" x="613" y="214" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="592" y="345.5" width="90" height="12" />
+          <dc:Bounds x="568.5" y="330.5" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_188yszu_di" bpmnElement="SequenceFlow_188yszu">
@@ -811,6 +702,69 @@
           <dc:Bounds x="1947" y="220" width="19" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_1u5r1f6_di" bpmnElement="receive_funspark_activities">
+        <dc:Bounds x="1209" y="62.452" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1158" y="45" width="55" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0v86wb5_di" bpmnElement="SequenceFlow_0v86wb5">
+        <di:waypoint xsi:type="dc:Point" x="1227" y="62" />
+        <di:waypoint xsi:type="dc:Point" x="1227" y="-64" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1242" y="-7" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_0b73l3z_di" bpmnElement="MessageFlow_0b73l3z">
+        <di:waypoint xsi:type="dc:Point" x="1227" y="489" />
+        <di:waypoint xsi:type="dc:Point" x="1227" y="429" />
+        <di:waypoint xsi:type="dc:Point" x="1227" y="98" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1242" y="453" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_15cixbq_di" bpmnElement="Additional_info_needed_gateway" isMarkerVisible="true">
+        <dc:Bounds x="679" y="171.952" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="664" y="233" width="80" height="36" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0yqv1u4_di" bpmnElement="SequenceFlow_0yqv1u4">
+        <di:waypoint xsi:type="dc:Point" x="549" y="197" />
+        <di:waypoint xsi:type="dc:Point" x="600" y="197" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="574.5" y="176" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0zjeq2f_di" bpmnElement="SequenceFlow_0zjeq2f">
+        <di:waypoint xsi:type="dc:Point" x="1124" y="161" />
+        <di:waypoint xsi:type="dc:Point" x="1213" y="91" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1168.5" y="105" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0y4rrgk_di" bpmnElement="SequenceFlow_0y4rrgk">
+        <di:waypoint xsi:type="dc:Point" x="729" y="197" />
+        <di:waypoint xsi:type="dc:Point" x="793" y="197" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="752" y="176" width="18" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0c1mzw1_di" bpmnElement="SequenceFlow_0c1mzw1">
+        <di:waypoint xsi:type="dc:Point" x="704" y="172" />
+        <di:waypoint xsi:type="dc:Point" x="704" y="80" />
+        <di:waypoint xsi:type="dc:Point" x="1209" y="80" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="712" y="120" width="14" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_13ah40d_di" bpmnElement="SequenceFlow_13ah40d">
+        <di:waypoint xsi:type="dc:Point" x="636" y="197" />
+        <di:waypoint xsi:type="dc:Point" x="679" y="197" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="657.5" y="176" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

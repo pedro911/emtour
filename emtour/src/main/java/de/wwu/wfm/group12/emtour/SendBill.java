@@ -24,7 +24,7 @@ public class SendBill implements JavaDelegate {
 	    int children = ((Integer) execution.getVariable("children")).intValue();
 		int adult = (Integer) execution.getVariable("adult");
 		String desiredCity = (execution.getVariable("desiredCity")).toString();
-		String funspark_activities = (execution.getVariable("funspark_activities")).toString();
+		String funspark_activities = (execution.getVariable("ActivityDescs")).toString();
 		String activitySetPrice = (execution.getVariable("activitySetPrice")).toString();
 	    String total_value = (execution.getVariable("total_value")).toString();
 	    
@@ -38,8 +38,8 @@ public class SendBill implements JavaDelegate {
 		bill = bill + " \n\n" + "Number of travelers: " + String.valueOf(adult +children) + " \n\n"+
 	    		"Total Bill is: €" + total_value;
 
-	    SendEmail.mesaggeSendBill (name, lastName, email, bill);
-	    System.out.println("SendEmail.mesaggeSendBill done");
+	    //SendEmail.mesaggeSendBill (name, lastName, email, bill);
+	    System.out.println("SendEmail.mesaggeSendBill done...."+name+ lastName+ email+ bill);
 	    
 	  }
 }

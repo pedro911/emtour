@@ -16,6 +16,9 @@ public class ProcessBill implements JavaDelegate {
 		    		+ execution.getVariable("offers") + "' City: '"
 		    		+ execution.getVariable("desiredCity") + "'");
 	    	    
+		   //get variables from 
+		   String FunsparkActivityPrices = (execution.getVariable("ActivityPrices")).toString();
+		   // count how many activities are split by ; and sum it
 		   int activitySetPrice = 100;
 		   int total_value;
 		   int totalFunspark = 0;

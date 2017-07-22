@@ -21,18 +21,18 @@ public class SendCustomerInfo implements JavaDelegate{
 	    		+ execution.getVariable("name") + "' customerId: '"
 	    		+ execution.getVariable("customerId") + "'...");
 		
-	    /*
+	    
 	    String input;
-		ClientRequest request = new ClientRequest("http://localhost:8080/engine-rest/message");
-		request.accept("application/json");
+		//ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
+	    ClientRequest request = new ClientRequest("http://188.109.211.82:8080/engine-rest/message");
+	    request.accept("application/json");
 		
-		input = "{\"messageName\":\"more_info_result\","
+		input = "{\"messageName\":\"Message_AddInf\","
 				+ "\"correlationKeys\":{ "
 						+ "\"customerId\":{\"value\":\""+execution.getVariable("customerId")+"\", \"type\": \"String\"}"											
 					+ "},"
 				+ "\"processVariables\":{ "
-						+ "\"more_info\":{\"value\":\""+execution.getVariable("more_info")+"\", \"type\": \"Boolean\"},"
-						+ "\"customer_info_updated\":{\"value\":\""+execution.getVariable("customer_info_updated")+"\", \"type\": \"String\"}"						
+						+ "\"Healthy\":{\"value\":\""+execution.getVariable("Healthy")+"\", \"type\": \"Boolean\"}"												
 					+ "}"
 				+"}";
 		
@@ -55,7 +55,7 @@ public class SendCustomerInfo implements JavaDelegate{
 		}
 		else System.out.println("Output from Server. Status: "+response.getStatus());		
   
-	   */ 
+	    
 	    
 	  }
 }

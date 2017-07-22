@@ -13,12 +13,21 @@ public class SendVoucher implements JavaDelegate {
 
 	  public void execute(DelegateExecution execution) throws Exception {
 	  
+		/* what Funspark sends:
+		 * { "messageName": "Message_Voucher",
+    			"processVariables": {
+        			"Activities": { "type": "String", "value": "3hr vintage bike tour;Vatikan Museum;Grouptour Street Food;Visit the Colosseum;Shuttlebus Sightseeing"},
+        			"VoucherValue": {"type": "Integer","value": 170}
+        		}
+        	}		   
+		 */
+		  
 	  //implement send voucher mail
 	    
 	  LOGGER.info("Voucher Sent '" 
 		    		+ execution.getVariable("name") + "' customerId: '"
 		    		+ execution.getVariable("customerId")  
-		    		+ "END ...");	
+		    		+ "  END =)");	
 	  
 	  		// ajimenez
 			// send email voucher
@@ -26,7 +35,7 @@ public class SendVoucher implements JavaDelegate {
 			String lastName = (execution.getVariable("lastName")).toString();
 			String email = (execution.getVariable("email")).toString();
 			String desiredCity = (execution.getVariable("desiredCity")).toString();
-			String funspark_activities = (execution.getVariable("funspark_activities")).toString();
+			String funspark_activities = (execution.getVariable("Activities")).toString();
 			int children = ((Integer) execution.getVariable("children")).intValue();
 			int adult = (Integer) execution.getVariable("adult");
 		    String total_value = (execution.getVariable("total_value")).toString();
@@ -41,7 +50,7 @@ public class SendVoucher implements JavaDelegate {
 			voucher = voucher + " \n\n" + "Number of travelers: " + String.valueOf(adult +children) + " \n\n"+
 		    		"Total Bill is: €" + total_value;
 
-			SendEmail.messageSendVoucher(name, lastName, email, voucher);
+			//SendEmail.messageSendVoucher(name, lastName, email, voucher);
 			System.out.println("SendEmail.messageSendVoucher done");
 	  }
 }

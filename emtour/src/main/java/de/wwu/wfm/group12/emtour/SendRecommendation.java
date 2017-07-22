@@ -3,9 +3,16 @@ package de.wwu.wfm.group12.emtour;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+import org.camunda.bpm.engine.delegate.BaseDelegateExecution;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.jboss.resteasy.client.ClientRequest;
@@ -58,20 +65,22 @@ public class SendRecommendation implements JavaDelegate {
 		// replace with semicolons to send to Funspark
 		String semicolonsRecommendation = recommendedDestination + ";" + description + ";" + price;
 		System.out.println("Our recommendation sent to Funspark: " + semicolonsRecommendation);
-				
-		
 		
 		// RESTeasy Jboss API to send recommendations to Funspark
-		/*		
+					
 		String input;
-		ClientRequest request = new ClientRequest("http://localhost:8080/engine-rest/process-definition/key/funspark-id/start");
-		request.accept("application/json");
+		ClientRequest request = new ClientRequest("http://188.109.211.82:8080/engine-rest/message");
+		//ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
 		
-		input = "{\"variables\":{ "
-					+ "\"customerId\":{\"value\":\""+customerId+"\", \"type\": \"String\"},"
-					+ "\"name\":{\"value\":\""+execution.getVariable("name")+"\", \"type\": \"String\"},"				
-					+ "\"desiredCity\":{\"value\":\""+execution.getVariable("desiredCity")+"\", \"type\": \"String\"}"
-					+"}"
+		request.accept("application/json");
+				
+		input = "{\"messageName\":\"Message_Start\","
+					+"\"processVariables\":{ "
+						+ "\"customerId\":{\"value\":\""+customerId+"\", \"type\": \"String\"},"
+						+ "\"City\":{\"value\":\""+recommendedDestination+"\", \"type\": \"String\"},"
+						+ "\"Start_Date\":{\"value\":\""+execution.getVariable("travelStartDate")+"\", \"type\": \"String\"},"	
+						+ "\"End_Date\":{\"value\":\""+execution.getVariable("travelEndDate")+"\", \"type\": \"String\"}"	
+						+"}"
 				+ "}";
 		
 		System.out.println(input);
@@ -79,19 +88,21 @@ public class SendRecommendation implements JavaDelegate {
 
 		ClientResponse<String> response = request.post(String.class);
 
-		if (response.getStatus() != 200) {
+		if (response.getStatus() != 204) {
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					new ByteArrayInputStream(response.getEntity().getBytes())));	
+			
+			String output;
+			System.out.println("Output from Server. Status: ");
+			while ((output = br.readLine()) != null) {
+				System.out.println(output);
+			}
 			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 		}
+		else System.out.println("Output from Server. Status: "+response.getStatus());		
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(
-				new ByteArrayInputStream(response.getEntity().getBytes())));	
 		
-		String output;
-		System.out.println("Output from Server. Status: ");
-		while ((output = br.readLine()) != null) {
-			System.out.println(output);
-		}
-		*/
 		
 	}
 

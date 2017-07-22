@@ -12,18 +12,29 @@ public class SendProposals implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		LOGGER.info("Send Proposals to '" + execution.getVariable("name") + "' email: '"
 				+ execution.getVariable("email") + "'...");
-
+		/* what Funspark will send
+		 * {"messageName":"SendActivities",
+				"correlationKeys":{ "customerId":{"value":"50", "type": "String"}
+				},    
+    			"processVariables": {
+        			"ActivityDescs": {"type": "String","value": "Boat Cruise on the Canal;Welcome to Manchester: Private Guided Tour;Hard Rock Café (Without Waiting Time)"},
+        			"ActivityIDs": {"type": "String","value": "149;150;148"},
+					"ActivityPrices": {"type": "String", "value": "55;66;88"}
+    			}
+    		}
+		 * */
 		// ajimenez
 		// send email proposal
 		String name = (execution.getVariable("name")).toString();
 		String lastName = (execution.getVariable("lastName")).toString();
 		String email = (execution.getVariable("email")).toString();
 		String desiredCity = (execution.getVariable("desiredCity")).toString();
-		String funspark_activities = (execution.getVariable("funspark_activities")).toString();
+		String funspark_activities = (execution.getVariable("ActivityDescs")).toString();
 		String recommendations = desiredCity + "\n" + "Activities: " + funspark_activities;
-
-		SendEmail.messageProposal(name, lastName, email, recommendations);
-		System.out.println("SendEmail.messageProposal done");
+		String FunsparkActivityPrices = (execution.getVariable("ActivityPrices")).toString();
+		// Alejandro, please add the FunsparkActivityPrices into the email sending, the price will match with the ActivityDescs position  
+		//SendEmail.messageProposal(name, lastName, email, recommendations);
+		System.out.println("SendEmail.messageProposal done.... "+name+ lastName+ email+ recommendations);
 
 	}
 
