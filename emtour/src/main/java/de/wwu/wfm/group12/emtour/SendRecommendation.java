@@ -3,35 +3,25 @@ package de.wwu.wfm.group12.emtour;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-import org.camunda.bpm.engine.delegate.BaseDelegateExecution;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
-
-
 public class SendRecommendation implements JavaDelegate {
 	private final static Logger LOGGER = Logger.getLogger("SEND-RECOMMENDATIONS");
 
-	@SuppressWarnings("static-access")
 	public void execute(DelegateExecution execution) throws Exception {
 		LOGGER.info("Send Recommendations '" + execution.getVariable("name") + "' desired City: '"
 				+ execution.getVariable("desiredCity") + "'...");
 
 		// create db record with customer info and return customerID
-		CustomerDatabase cdb = new CustomerDatabase();
-		cdb.createCustomerDbRecord(execution);
-		String customerId = cdb.lastCustomerId();
+		DatabaseManagement dbm = new DatabaseManagement();
+		dbm.createCustomerDbRecord(execution);		
+		String customerId = dbm.lastCustomerId();		
 		execution.setVariable("customerId", customerId);
 		
 		// ajimenez
@@ -64,12 +54,10 @@ public class SendRecommendation implements JavaDelegate {
 		execution.setVariable("description", description);
 		execution.setVariable("price", price);
 		
+		// prepare values to send
 		// replace with semicolons to send to Funspark
 		String semicolonsRecommendation = recommendedDestination + ";" + description + ";" + price;
 		System.out.println("Our recommendation sent to Funspark: " + semicolonsRecommendation);
-		
-		// RESTeasy Jboss API to send recommendations to Funspark
-		// prepare values to send
 		budget = budget.replaceAll(",", ".");
 		price = price.replaceAll(",", ".");
 		Double budgetFunspark = Double.parseDouble(budget);
@@ -77,7 +65,12 @@ public class SendRecommendation implements JavaDelegate {
 		budgetFunspark = budgetFunspark - priceDouble;
 		int adultsInt = Integer.parseInt(adults);
 		int childrenInt = Integer.parseInt(children);
-					
+		
+		//save recommendations db
+		dbm.createEmTourRecommendationDbRecord(Integer.parseInt(customerId),priceDouble,description,recommendedDestination);
+				
+		// RESTeasy Jboss API to send recommendations to Funspark
+		
 		String input;
 		ClientRequest request = new ClientRequest("http://178.6.170.56:8080/engine-rest/message");
 		//ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
@@ -101,11 +94,8 @@ public class SendRecommendation implements JavaDelegate {
 
 		ClientResponse<String> response = request.post(String.class);
 
-		if (response.getStatus() != 204) {
-			
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					new ByteArrayInputStream(response.getEntity().getBytes())));	
-			
+		if (response.getStatus() != 204) {			
+			BufferedReader br = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(response.getEntity().getBytes())));			
 			String output;
 			System.out.println("Output from Server. Status: ");
 			while ((output = br.readLine()) != null) {
@@ -113,9 +103,7 @@ public class SendRecommendation implements JavaDelegate {
 			}
 			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 		}
-		else System.out.println("Output from Server. Status: "+response.getStatus());		
-		
-		
+		else System.out.println("Output from Server. Status: "+response.getStatus());
 		
 	}
 

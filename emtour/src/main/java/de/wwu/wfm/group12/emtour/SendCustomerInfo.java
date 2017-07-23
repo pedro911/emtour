@@ -5,9 +5,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Logger;
 
-import javax.ejb.Stateless;
-import javax.inject.Named;
-
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.jboss.resteasy.client.ClientRequest;
@@ -20,7 +17,6 @@ public class SendCustomerInfo implements JavaDelegate{
 	    LOGGER.info("Send Customer Information '" 
 	    		+ execution.getVariable("name") + "' customerId: '"
 	    		+ execution.getVariable("customerId") + "'...");
-		
 	    
 	    String input;
 		//ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
@@ -53,9 +49,7 @@ public class SendCustomerInfo implements JavaDelegate{
 			}
 			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 		}
-		else System.out.println("Output from Server. Status: "+response.getStatus());		
-  
-	    
+		else System.out.println("Output from Server. Status: "+response.getStatus());    
 	    
 	  }
 }

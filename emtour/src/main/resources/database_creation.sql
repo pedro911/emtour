@@ -16,7 +16,7 @@ CREATE TABLE customer (
   lastName VARCHAR(255) NULL,
   birthDate TIMESTAMP NULL,
   email VARCHAR(255) NULL,
-  budget FLOAT NULL,
+  budget DOUBLE NULL,
   desiredCity VARCHAR(255) NULL,
   travelStartDate TIMESTAMP NULL,
   travelEndDate TIMESTAMP NULL,
@@ -28,9 +28,9 @@ CREATE TABLE customer (
 CREATE TABLE emtour_recommendation (
   idemtour_recommendation INTEGER NOT NULL AUTO_INCREMENT,
   customer_idcustomer INTEGER UNSIGNED NOT NULL,
-  price FLOAT NULL,
+  price DOUBLE NULL,
   description VARCHAR(255) NULL,
-  country VARCHAR(255) NULL,
+  desiredCity VARCHAR(255) NULL,
   PRIMARY KEY(idemtour_recommendation),
   INDEX emtour_recommendation_FKIndex1(customer_idcustomer)
 );
@@ -38,7 +38,7 @@ CREATE TABLE emtour_recommendation (
 CREATE TABLE funspark_recommendation (
   idfunspark_recommendation INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   emtour_recommendation_idemtour_recommendation INTEGER NOT NULL,
-  price FLOAT NULL,
+  price DOUBLE NULL,
   description VARCHAR(255) NULL,
   PRIMARY KEY(idfunspark_recommendation),
   INDEX funspark_recommendation_FKIndex1(emtour_recommendation_idemtour_recommendation)

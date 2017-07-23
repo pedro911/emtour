@@ -1,18 +1,16 @@
 package de.wwu.wfm.group12.emtour;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
-import java.io.Serializable;
-import java.sql.Date;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class BillEntity implements Serializable {

@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
+@SuppressWarnings("unused")
 public class ProcessBill implements JavaDelegate {
 	
 	 private final static Logger LOGGER = Logger.getLogger("PROCESS-BILL");
@@ -25,20 +26,12 @@ public class ProcessBill implements JavaDelegate {
 			   activitySetPrice = activitySetPrice + Integer.parseInt(FunsparkActivityPricesArray[i]);
 		   }
 		   System.out.println("activitySetPrice" + activitySetPrice); 
-		   // count how many activities are split by ; and sum it
 		   
 		   double total_value;
 		   double totalFunspark = 0;
-		   //int id = (Integer)execution.getVariable("id"); //customerId
-		   //int children = ((Integer) execution.getVariable("children")).intValue();
 		   int children = Integer.parseInt((execution.getVariable("children")).toString());
-		   //int adult = (Integer) execution.getVariable("adult");
 		   int adult = Integer.parseInt((execution.getVariable("adult")).toString());
-		   //int number_of_days = (Integer) execution.getVariable("number_of_days");
-		   //int budget = (Integer) execution.getVariable("budget");
-		   //int price = (Integer) execution.getVariable("price");
-		   double price = Integer.parseInt((execution.getVariable("price")).toString());
-		   //int price=100;
+		   double price = Double.parseDouble((execution.getVariable("price")).toString());
 		   boolean hasFunSparkActivity = ((Boolean)execution.getVariable("hasFunSparkActivity")).booleanValue();
 		   		   
 		   // Generate bill depending on client's budget & activity set price provided from FunSpark
@@ -50,6 +43,13 @@ public class ProcessBill implements JavaDelegate {
 		   execution.setVariable("total_value", String.valueOf(total_value));
 		   execution.setVariable("activitySetPrice", String.valueOf(activitySetPrice));
 		   execution.setVariable("totalFunspark", String.valueOf(totalFunspark));
+		   
+		   //save bill on database
+		   String customerId = execution.getVariable("customerId").toString();		
+		   String funsparkRecommendationId = execution.getVariable("funsparkRecommendationId").toString();
+		   DatabaseManagement dbm = new DatabaseManagement();
+		   boolean paymentStatus = false;		   
+		   dbm.createBill(customerId,funsparkRecommendationId,paymentStatus);	
 		   
 		   System.out.println("Total Bill is: " + total_value + " Persons: " + String.valueOf(adult +children) + " City: " + execution.getVariable("desiredCity"));
 		   

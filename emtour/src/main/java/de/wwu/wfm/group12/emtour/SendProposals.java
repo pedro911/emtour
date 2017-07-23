@@ -12,17 +12,7 @@ public class SendProposals implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		LOGGER.info("Send Proposals to '" + execution.getVariable("name") + "' email: '"
 				+ execution.getVariable("email") + "'...");
-		/* what Funspark will send
-		 * {"messageName":"SendActivities",
-				"correlationKeys":{ "customerId":{"value":"50", "type": "String"}
-				},    
-    			"processVariables": {
-        			"ActivityDescs": {"type": "String","value": "Boat Cruise on the Canal;Welcome to Manchester: Private Guided Tour;Hard Rock Café (Without Waiting Time)"},
-        			"ActivityIDs": {"type": "String","value": "149;150;148"},
-					"ActivityPrices": {"type": "String", "value": "55;66;88"}
-    			}
-    		}
-		 * */
+	
 		// ajimenez
 		// send email proposal
 		String name = (execution.getVariable("name")).toString();
@@ -39,8 +29,14 @@ public class SendProposals implements JavaDelegate {
 			recommendations = recommendations + "- " + funspark_activitiesArray[i] + " €" + FunsparkActivityPricesArray[i] + " ";
 		}
 		
-		// Alejandro, please add the FunsparkActivityPrices into the email sending, the price will match with the ActivityDescs position  
+		//save funspark recommendations on DB
+		String customerId = execution.getVariable("customerId").toString();		
+		DatabaseManagement dbm = new DatabaseManagement();
+		dbm.createFunsParkRecommendationDbRecord(FunsparkActivityPrices,funspark_activities,customerId);		
+		execution.setVariable("funsparkRecommendationId", dbm.laslFunsparkRecommendationId());
+		
 		SendEmail.messageProposal(name, lastName, email, recommendations);
+		
 		System.out.println("SendEmail.messageProposal done.... "+name+ lastName+ email+ recommendations);
 
 	}

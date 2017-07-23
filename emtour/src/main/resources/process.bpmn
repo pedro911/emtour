@@ -283,11 +283,7 @@
             </camunda:validation>
           </camunda:formField>
           <camunda:formField id="comment" label="Write a comment (optional)" type="string" defaultValue="e.g. no selected activities from FunSpark" />
-          <camunda:formField id="hasFunSparkActivity" label="Did the customer select activities from FunSpark?" type="boolean">
-            <camunda:validation>
-              <camunda:constraint name="readonly" />
-            </camunda:validation>
-          </camunda:formField>
+          <camunda:formField id="hasFunSparkActivity" label="Did the customer select activities from FunSpark?" type="boolean" />
           <camunda:formField id="funspark_banktransfer_code" label="Insert bank tranfer code from Funspark payment" type="string" />
           <camunda:formField id="ActivityDescs" label="Funspark activities" type="string">
             <camunda:validation>
@@ -322,11 +318,11 @@
       <bpmn:outgoing>SequenceFlow_1squcuk</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_112pujy</bpmn:outgoing>
     </bpmn:eventBasedGateway>
-    <bpmn:intermediateCatchEvent id="cancel_proposal" name="1 day">
+    <bpmn:intermediateCatchEvent id="cancel_proposal" name="7 days">
       <bpmn:incoming>SequenceFlow_112pujy</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0hthymx</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P7D</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:userTask id="check_payment" name="Check payment" camunda:assignee="john" camunda:dueDate="P3D">
