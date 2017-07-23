@@ -1,0 +1,72 @@
+START:
+
+http://188.109.211.82:8080/engine-rest/message
+
+first message from emTour to start Funspark process 
+
+ {"messageName":"Message_Start",
+ 	"processVariables":{ 
+ 		"customerId":{"value":"id", "type": "String"},
+ 		"City":{"value":"Bali", "type": "String"},
+ 		"Start_Date":{"value":"Sun Jun 25 00:00:00 CEST 2017", "type": "String"},
+ 		"End_Date":{"value":"Thu Jul 06 00:00:00 CEST 2017", "type": "String"},
+ 		"Budget":{"value":"-300.0", "type": "Double"},
+ 		"Adults":{"value":"3", "type": "Integer"},
+ 		"Children":{"value":"2", "type": "Integer"}
+ 	}
+ }
+
+Funspark send if need more info from customer, if yes:
+
+Customer send this message:
+
+{"messageName" : "additional_info",
+	"correlationKeys" : {
+    "customerId" : {"value" : "id", "type": "String"}
+	},
+	"processVariables": {
+		"Healthy": {"value": true,"type": "Boolean"}
+	}
+}
+
+emTour send to Funspark more info from the Customer: 
+
+{"messageName":"Message_AddInf",
+	"correlationKeys":{ 
+		"customerId":{"value":"id", "type": "String"}
+	},
+	"processVariables":{ 
+		"Healthy":{"value":true, "type": "Boolean"}
+	}	
+}
+
+If no, Funspark send to emTour the activities (see JSON_Funspark.txt)
+
+emTour will merge info and send proposal to customer and wait the customer's answer:
+
+{"messageName" : "selected_offers",
+"correlationKeys" : {
+    "customerId" : {"value" : "id", "type": "String"}
+},
+"processVariables" : {
+    "offers" : {"value" : "offers message content", "type": "String"},
+	"hasFunSparkActivity" : {"value":true,"type":"Boolean"}	
+}
+}
+
+emTour will check the payment and then send the confirmation to Funspark: 
+
+{"messageName":"Message_BookingInf",
+	"correlationKeys":{ 
+		"customerId":{"value":"id", "type": "String"}
+	},
+	"processVariables":{ 
+		"funspark_banktransfer_code":{"value":"ersf3434gf64", "type": "String"},
+		"BookedActivityIDs":{"value":"149;150;148", "type": "String"}
+	}
+}
+
+Funspark will check the payment and send back the voucher (see JSON_Funspark.txt)
+
+END!
+

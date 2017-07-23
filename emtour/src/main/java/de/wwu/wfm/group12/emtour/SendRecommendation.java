@@ -23,6 +23,7 @@ import org.jboss.resteasy.client.ClientResponse;
 public class SendRecommendation implements JavaDelegate {
 	private final static Logger LOGGER = Logger.getLogger("SEND-RECOMMENDATIONS");
 
+	@SuppressWarnings("static-access")
 	public void execute(DelegateExecution execution) throws Exception {
 		LOGGER.info("Send Recommendations '" + execution.getVariable("name") + "' desired City: '"
 				+ execution.getVariable("desiredCity") + "'...");
@@ -38,6 +39,7 @@ public class SendRecommendation implements JavaDelegate {
 		String country = (execution.getVariable("country")).toString();
 		String budget = (execution.getVariable("budget")).toString();
 		String children = (execution.getVariable("children")).toString();
+		String adults = (execution.getVariable("adult")).toString();
 		System.out.println("Our recommendation is (input): |" + country + "|" + budget + "|" + children + "|");
 
 		// get variable of recommendations from DMN
@@ -67,9 +69,17 @@ public class SendRecommendation implements JavaDelegate {
 		System.out.println("Our recommendation sent to Funspark: " + semicolonsRecommendation);
 		
 		// RESTeasy Jboss API to send recommendations to Funspark
+		// prepare values to send
+		budget = budget.replaceAll(",", ".");
+		price = price.replaceAll(",", ".");
+		Double budgetFunspark = Double.parseDouble(budget);
+		Double priceDouble = Double.parseDouble(price);
+		budgetFunspark = budgetFunspark - priceDouble;
+		int adultsInt = Integer.parseInt(adults);
+		int childrenInt = Integer.parseInt(children);
 					
 		String input;
-		ClientRequest request = new ClientRequest("http://188.109.211.82:8080/engine-rest/message");
+		ClientRequest request = new ClientRequest("http://178.6.170.56:8080/engine-rest/message");
 		//ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
 		
 		request.accept("application/json");
@@ -79,7 +89,10 @@ public class SendRecommendation implements JavaDelegate {
 						+ "\"customerId\":{\"value\":\""+customerId+"\", \"type\": \"String\"},"
 						+ "\"City\":{\"value\":\""+recommendedDestination+"\", \"type\": \"String\"},"
 						+ "\"Start_Date\":{\"value\":\""+execution.getVariable("travelStartDate")+"\", \"type\": \"String\"},"	
-						+ "\"End_Date\":{\"value\":\""+execution.getVariable("travelEndDate")+"\", \"type\": \"String\"}"	
+						+ "\"End_Date\":{\"value\":\""+execution.getVariable("travelEndDate")+"\", \"type\": \"String\"},"
+						+ "\"Budget\":{\"value\":\""+budgetFunspark+"\", \"type\": \"Double\"},"
+						+ "\"Adults\":{\"value\":\""+adultsInt+"\", \"type\": \"Integer\"},"
+						+ "\"Children\":{\"value\":\""+childrenInt+"\", \"type\": \"Integer\"}"
 						+"}"
 				+ "}";
 		

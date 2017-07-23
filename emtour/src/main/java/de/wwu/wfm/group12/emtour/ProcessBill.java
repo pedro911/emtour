@@ -30,7 +30,8 @@ public class ProcessBill implements JavaDelegate {
 		   //int number_of_days = (Integer) execution.getVariable("number_of_days");
 		   //int budget = (Integer) execution.getVariable("budget");
 		   //int price = (Integer) execution.getVariable("price");
-		   int price = Integer.parseInt((execution.getVariable("price")).toString());
+		   //int price = Integer.parseInt((execution.getVariable("price")).toString());
+		   int price=100;
 		   boolean hasFunSparkActivity = ((Boolean)execution.getVariable("hasFunSparkActivity")).booleanValue();
 		   		   
 		   // Generate bill depending on client's budget & activity set price provided from FunSpark

@@ -1,0 +1,124 @@
+I: Information FunSpark sends:
+
+1. This message will always be send to you. The value of the boolean determines whether we need more info. How you need to respond, can be seen in II.2
+
+{"messageName": "Message_AddInf",
+	"correlationKeys":{ 
+		"customerId":{"value":"50", "type": "String"}
+	}, 
+    "processVariables": {
+    	"AdditionalInformationNeeded": {
+        	"type": "Boolean",
+        	"value": false
+        }	
+    }
+}
+
+2. This information contains the activity descriptions and ids. Both values are a concatenated string with each component separated by ;
+This allows you to easily extract single activities. Once you have processed this message, we need to booking confirmation as seen in II.3
+
+{"messageName":"SendActivities",
+	"correlationKeys":{ 
+		"customerId":{"value":"50", "type": "String"}
+	},    
+    "processVariables": {
+        "ActivityDescs": {
+            "type": "String",
+            "value": "Boat Cruise on the Canal;Welcome to Manchester: Private Guided Tour;Hard Rock Café (Without Waiting Time)"
+        },
+        "ActivityIDs": {
+            "type": "String",
+            "value": "149;150;148"
+        },
+		"ActivityPrices": {
+            "type": "String",
+            "value": "55;66;88"
+        }
+    }
+}
+
+
+3. This is the final voucher with the activities your customer has booked.
+It contains the activities and the value of the voucher
+
+{"messageName": "Message_Voucher",
+	"correlationKeys":{ 
+		"customerId":{"value":"50", "type": "String"}
+	}, 
+    "processVariables": {
+        "Activities": {
+            "type": "String",
+            "value": "3hr vintage bike tour;Vatikan Museum;Grouptour Street Food;Visit the Colosseum;Shuttlebus Sightseeing"
+        },
+        "VoucherValue": {
+            "type": "Integer",
+            "value": 170
+        }
+    }
+}
+
+_____________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________________________
+
+
+
+II: Information FunSpark receives from emTour:
+
+1. Message to start our process. 
+We need a unique business key for each starting message and only the name of the city !!
+
+{"messageName": "Message_Start",
+	"correlationKeys":{ 
+		"customerId":{"value":"50", "type": "String"}
+	}, 
+	"processVariables": {
+		"City": {
+			"value": "Manchester",
+			"type": "String"
+		}
+	}
+}
+
+
+2. Additional Info if requested
+The business key has to be the same for a single process instance. We also need you to set the boolean to true or false. 
+If the customer is healthy -> true, otherwise false. 
+
+{"messageName": "Message_AddInf",
+	"correlationKeys":{ 
+		"customerId":{"value":"50", "type": "String"}
+	}, 
+	"processVariables": {
+		"Healthy": {
+			"value": "false",
+			"type": "Boolean"
+		}
+	}
+}
+
+3. Booking Information
+Once we have send you the set of activities we wait for the booking confirmation from your side.
+This can be a subset of the activities we have send to you.
+The value for the ActivityDescs and BookedActivityIDs are realized as a whole string, with each entry separated by a ;
+This allows you to easily split the string into its components. Please keep in mind to that the description corresponds to the correct ID
+
+{"messageName": "Message_BookingInf",
+	"correlationKeys":{ 
+		"customerId":{"value":"50", "type": "String"}
+	}, 
+	"processVariables": {
+		"ActivityDescs": {
+			"type": "String",
+			"value": "Ticket for Stonehenge;Harry-Potter-Tour & Warner Bros. Studio;Ticket for Buckingham Palace;Ticket for Coca-Cola London Eye 4D-experience"
+		},
+		"BookedActivityIDs": {
+			"type": "String",
+			"value": "142;143;147;146"
+		}
+	}
+}
+
+

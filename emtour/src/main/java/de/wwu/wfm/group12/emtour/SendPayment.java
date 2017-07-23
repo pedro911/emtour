@@ -24,7 +24,7 @@ public class SendPayment implements JavaDelegate {
 	    
 	    String input;
 		//ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
-	    ClientRequest request = new ClientRequest("http://188.109.211.82:8080/engine-rest/message");
+	    ClientRequest request = new ClientRequest("http://178.6.170.56:8080/engine-rest/message");
 	    request.accept("application/json");
 		
 		input = "{\"messageName\":\"Message_BookingInf\","
