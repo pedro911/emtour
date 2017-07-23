@@ -50,7 +50,7 @@ public class SendVoucher implements JavaDelegate {
 			voucher = voucher + " \n\n" + "Number of travelers: " + String.valueOf(adult +children) + " \n\n"+
 		    		"Total Bill is: €" + total_value;
 
-			//SendEmail.messageSendVoucher(name, lastName, email, voucher);
+			SendEmail.messageSendVoucher(name, lastName, email, voucher);
 			System.out.println("SendEmail.messageSendVoucher done");
 	  }
 }

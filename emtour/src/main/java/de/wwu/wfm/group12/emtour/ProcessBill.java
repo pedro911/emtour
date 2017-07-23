@@ -1,6 +1,7 @@
 package de.wwu.wfm.group12.emtour;
 
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -18,10 +19,16 @@ public class ProcessBill implements JavaDelegate {
 	    	    
 		   //get variables from 
 		   String FunsparkActivityPrices = (execution.getVariable("ActivityPrices")).toString();
+		   String[] FunsparkActivityPricesArray = FunsparkActivityPrices.split(Pattern.quote(";"));
+		   double activitySetPrice = 0;
+		   for (int i = 0; i < FunsparkActivityPricesArray.length; i++){
+			   activitySetPrice = activitySetPrice + Integer.parseInt(FunsparkActivityPricesArray[i]);
+		   }
+		   System.out.println("activitySetPrice" + activitySetPrice); 
 		   // count how many activities are split by ; and sum it
-		   int activitySetPrice = 100;
-		   int total_value;
-		   int totalFunspark = 0;
+		   
+		   double total_value;
+		   double totalFunspark = 0;
 		   //int id = (Integer)execution.getVariable("id"); //customerId
 		   //int children = ((Integer) execution.getVariable("children")).intValue();
 		   int children = Integer.parseInt((execution.getVariable("children")).toString());
@@ -30,8 +37,8 @@ public class ProcessBill implements JavaDelegate {
 		   //int number_of_days = (Integer) execution.getVariable("number_of_days");
 		   //int budget = (Integer) execution.getVariable("budget");
 		   //int price = (Integer) execution.getVariable("price");
-		   //int price = Integer.parseInt((execution.getVariable("price")).toString());
-		   int price=100;
+		   double price = Integer.parseInt((execution.getVariable("price")).toString());
+		   //int price=100;
 		   boolean hasFunSparkActivity = ((Boolean)execution.getVariable("hasFunSparkActivity")).booleanValue();
 		   		   
 		   // Generate bill depending on client's budget & activity set price provided from FunSpark

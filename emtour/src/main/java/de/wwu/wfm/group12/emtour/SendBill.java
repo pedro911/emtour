@@ -38,7 +38,7 @@ public class SendBill implements JavaDelegate {
 		bill = bill + " \n\n" + "Number of travelers: " + String.valueOf(adult +children) + " \n\n"+
 	    		"Total Bill is: €" + total_value;
 
-	    //SendEmail.mesaggeSendBill (name, lastName, email, bill);
+	    SendEmail.mesaggeSendBill (name, lastName, email, bill);
 	    System.out.println("SendEmail.mesaggeSendBill done...."+name+ lastName+ email+ bill);
 	    
 	  }

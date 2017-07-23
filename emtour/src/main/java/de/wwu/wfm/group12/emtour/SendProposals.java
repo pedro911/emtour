@@ -30,10 +30,17 @@ public class SendProposals implements JavaDelegate {
 		String email = (execution.getVariable("email")).toString();
 		String desiredCity = (execution.getVariable("desiredCity")).toString();
 		String funspark_activities = (execution.getVariable("ActivityDescs")).toString();
-		String recommendations = desiredCity + "\n" + "Activities: " + funspark_activities;
+		String recommendations = desiredCity + "\n" + "Activities: \n";
 		String FunsparkActivityPrices = (execution.getVariable("ActivityPrices")).toString();
+		
+		String[] funspark_activitiesArray = funspark_activities.split(Pattern.quote(";"));
+		String[] FunsparkActivityPricesArray = FunsparkActivityPrices.split(Pattern.quote(";"));
+		for (int i = 0; i < funspark_activitiesArray.length; i++){
+			recommendations = recommendations + "- " + funspark_activitiesArray[i] + " €" + FunsparkActivityPricesArray[i] + " ";
+		}
+		
 		// Alejandro, please add the FunsparkActivityPrices into the email sending, the price will match with the ActivityDescs position  
-		//SendEmail.messageProposal(name, lastName, email, recommendations);
+		SendEmail.messageProposal(name, lastName, email, recommendations);
 		System.out.println("SendEmail.messageProposal done.... "+name+ lastName+ email+ recommendations);
 
 	}
