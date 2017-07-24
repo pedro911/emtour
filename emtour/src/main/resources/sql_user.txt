@@ -1,0 +1,18 @@
+CREATE USER 'emtour'@'localhost' IDENTIFIED BY 'Emtour,sql';
+
+GRANT ALL PRIVILEGES ON *.* TO 'emtour'@'localhost' WITH GRANT OPTION;
+
+CREATE USER 'emtour'@'%' IDENTIFIED BY 'Emtour,sql';
+
+GRANT ALL PRIVILEGES ON *.* TO 'emtour'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+
+select * from customer;
+
+select * from bill;
+
+select * from emtour_recommendation;
+
+select * from funspark_recommendation;

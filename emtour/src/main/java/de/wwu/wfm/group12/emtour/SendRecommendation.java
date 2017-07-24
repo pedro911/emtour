@@ -72,8 +72,8 @@ public class SendRecommendation implements JavaDelegate {
 		// RESTeasy Jboss API to send recommendations to Funspark
 		
 		String input;
-		ClientRequest request = new ClientRequest("http://178.6.170.56:8080/engine-rest/message");
-		//ClientRequest request = new ClientRequest("http://192.168.1.30:8080/engine-rest/message");
+		//ClientRequest request = new ClientRequest("http://178.6.170.56:8080/engine-rest/message");
+		ClientRequest request = new ClientRequest("http://10.67.28.253:8080/engine-rest/message");
 		
 		request.accept("application/json");
 				

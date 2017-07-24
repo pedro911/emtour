@@ -35,7 +35,8 @@ public class DatabaseManagement {
     
     Class.forName("com.mysql.jdbc.Driver");
     
-	Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+	//Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/emtour","emtour","Emtour,sql");
 	
 	PreparedStatement statement = con.prepareStatement(insertQuery);
 	
@@ -59,7 +60,8 @@ public class DatabaseManagement {
 	    
 	    Class.forName("com.mysql.jdbc.Driver");
 	    
-		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		//Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/emtour","emtour","Emtour,sql");
 		
 		PreparedStatement statement = con.prepareStatement(insertQuery);
 		
@@ -83,7 +85,8 @@ public class DatabaseManagement {
 	    
 	    Class.forName("com.mysql.jdbc.Driver");
 	    
-		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		//Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/emtour","emtour","Emtour,sql");
 		
 		PreparedStatement statement = con.prepareStatement(insertQuery);
 		
@@ -100,7 +103,8 @@ public class DatabaseManagement {
 	public String idEmTourRecommendations_by_customerId(String customerId) throws Exception{
 		String idemtour_recommendation="";
 	    Class.forName("com.mysql.jdbc.Driver");    
-		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		//Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/emtour","emtour","Emtour,sql");
 		String query = String.format("SELECT idemtour_recommendation FROM emtour_recommendation WHERE customer_idcustomer ="+customerId);
 		PreparedStatement statement = con.prepareStatement(query); 
 		ResultSet result = statement.executeQuery();	
@@ -127,7 +131,8 @@ public class DatabaseManagement {
 	    
 	    Class.forName("com.mysql.jdbc.Driver");
 	    
-		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		//Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/emtour","emtour","Emtour,sql");
 		
 		PreparedStatement statement = con.prepareStatement(insertQuery);
 		
@@ -149,7 +154,8 @@ public class DatabaseManagement {
 	    
 	    Class.forName("com.mysql.jdbc.Driver");
 	    
-		Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		//Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/emtour","emtour","Emtour,sql");
 		
 		PreparedStatement statement = con.prepareStatement(query);
 		
@@ -167,7 +173,8 @@ public class DatabaseManagement {
   public String lastCustomerId() throws Exception{
 	String customerId="";	
     Class.forName("com.mysql.jdbc.Driver");    
-	Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+	//Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/emtour","emtour","Emtour,sql");
 	String lastIdquery = String.format("SELECT idcustomer FROM customer ORDER BY idcustomer DESC LIMIT 1");
 	PreparedStatement statement = con.prepareStatement(lastIdquery); 
 	ResultSet result = statement.executeQuery();	
@@ -186,7 +193,8 @@ public class DatabaseManagement {
   public String laslFunsparkRecommendationId() throws Exception{
 	String funsparkRecommendationId="";	
     Class.forName("com.mysql.jdbc.Driver");    
-	Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+	//Connection con = DriverManager.getConnection("jdbc:mysql://pedro911.selfhost.eu:3306/emtour","emtour","Emtour,sql");
+	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/emtour","emtour","Emtour,sql");
 	String lastIdquery = String.format("SELECT idfunspark_recommendation FROM funspark_recommendation ORDER BY idfunspark_recommendation DESC LIMIT 1");
 	PreparedStatement statement = con.prepareStatement(lastIdquery); 
 	ResultSet result = statement.executeQuery();	
